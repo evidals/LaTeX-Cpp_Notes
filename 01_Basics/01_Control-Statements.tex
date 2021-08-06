@@ -11,24 +11,85 @@ C++ has 3 kind of control statements:(i) selection statementes, (ii) iteration s
 \subsection{Selection statement}
 \subsubsection{\texttt{if-else}}
 
-\begin{figure}[!h] %%%%%%%%%%%%%%%%%%%%%%% Begin Figure Directory
+%begin minipages
+\begin{minipage}{.50\textwidth}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Figure Selection Statement - if-else
 \centering
-\includegraphics[width=0.50\linewidth]{01_Basics/figures/uml/SelectionStatement-00-UML-if-else.pdf}
-\caption{UML \texttt{if-else} Activity Diagram Representation}
+\includegraphics[width=0.65\linewidth]{01_Basics/figures/uml/SelectionStatement-00-UML-if-else.pdf}
+\captionof{figure}{UML \texttt{if-else} \\Activity Diagram Representation}
 \label{fig:ch01_Basics_UML_SelStatement-00-if-else}
 %~\ref{fig:ch01_Basics_UML_SelStatement-00-if-else} 
-\end{figure}       %%%%%%%%%%%%%%%%%%%%%%% End Figure
+%%%%%%%%%%%%%%%%%%%%%%%%%%End figure
+\end{minipage}
+\begin{minipage}{.25\textwidth}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Begin code
+\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+if (cond_1)
+{
+    //do smth
+}
+else
+{
+    //do smth else
+    //else situation is not
+    //shown in UML diagram
+}
+\end{lstlisting}
+%%%%%%%%%%%%%%%%%%End Code
+\end{minipage}
+\vspace{0.5cm}
+%end minipages
+
 
 \subsection{Iteration statement}
-\subsubsection{\texttt{while}}
-\begin{figure}[!h] %%%%%%%%%%%%%%%%%%%%%%% Begin Figure Directory
+\subsubsection{\texttt{while}-loop}
+%begin minipages
+\begin{minipage}{.50\textwidth}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Figure Selection Statement - while
 \centering
-\includegraphics[width=0.50\linewidth]{01_Basics/figures/uml/IterationStatement-00-UML-while.pdf}
-\caption{UML \texttt{if-else} Activity Diagram Representation}
+\includegraphics[width=0.80\linewidth]{01_Basics/figures/uml/IterationStatement-00-UML-while.pdf}
+\captionof{figure}{UML \texttt{while} \\Activity Diagram Representation}
 \label{fig:ch01_Basics_UML_IterationStatement-00-while}
 %~\ref{fig:ch01_Basics_UML_IterationStatement-00-while} 
-\end{figure}       %%%%%%%%%%%%%%%%%%%%%%% End Figure
+%%%%%%%%%%%%%%%%%%%%%%%%%%End figure
+\end{minipage}
+\begin{minipage}{.25\textwidth}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Begin code
+\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+while (cond_1)
+{
+    //do smth
+}
+\end{lstlisting}
+%%%%%%%%%%%%%%%%%%End Code
+\end{minipage}
+\vspace{0.5cm}
+%end minipages
 
+\subsubsection{\texttt{for}-loop}
+%begin minipages
+\begin{minipage}{.50\textwidth}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Figure Selection Statement - while
+\centering
+\includegraphics[width=0.80\linewidth]{01_Basics/figures/uml/IterationStatement-01-UML-for.pdf}
+\captionof{figure}{UML \texttt{for-loop} \\Activity Diagram Representation}
+\label{fig:ch01_Basics_UML_IterationStatement-01-for}
+%~\ref{fig:ch01_Basics_UML_IterationStatement-01-for} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%End figure
+\end{minipage}
+\begin{minipage}{.415\textwidth}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Begin code
+\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+//examples
+for (unsigned int i{10}; i %\texttt{>=}% 1; i--) {...}
+for (unsigned int i{20}; i %\texttt{>=}% 2; i -= 2) {...}
+\end{lstlisting}
+%%%%%%%%%%%%%%%%%%End Code
+\end{minipage}
+\vspace{0.5cm}
+%end minipages
+
+\subsubsection{\texttt{do-while}-loop}
 
 
 % no numbers listing
@@ -105,6 +166,27 @@ C++ has 3 kind of control statements:(i) selection statementes, (ii) iteration s
 % \captionof{figure}{Lab 12 diagram connections}
 %\label{fig:RT_ch04_MACQ-EXAMPLE-01-oldDataIsLost}
 %~\ref{fig:RT_ch04_MACQ-EXAMPLE-01-oldDataIsLost} 
+% \end{minipage}
+% \vspace{0.5cm}
+% %end minipages
+
+% %Poner Figura y al costado codigo
+% %begin minipages
+% \begin{minipage}{.60\textwidth}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Figure Selection Statement - while
+% \centering
+% \includegraphics[width=0.50\linewidth]{01_Basics/figures/uml/IterationStatement-00-UML-while.pdf}
+% \captionof{figure}{UML \texttt{while} Activity Diagram Representation}
+% \label{fig:ch01_Basics_UML_IterationStatement-00-while}
+% %~\ref{fig:ch01_Basics_UML_IterationStatement-00-while} 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%End figure
+% \end{minipage}
+% \begin{minipage}{.25\textwidth}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Begin code
+% \begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+% some awesome code here
+% \end{lstlisting}
+% %%%%%%%%%%%%%%%%%%End Code
 % \end{minipage}
 % \vspace{0.5cm}
 % %end minipages
