@@ -1,0 +1,307 @@
+%color definitions
+% \definecolor{ashgrey}{rgb}{0.7, 0.75, 0.71}
+% \definecolor{bondiblue}{rgb}{0.0, 0.58, 0.71}
+% \definecolor{blue(ryb)}{rgb}{0.01, 0.28, 1.0}
+% \definecolor{byzantium}{rgb}{0.44, 0.16, 0.39} %morado
+% \definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}
+% \definecolor{darkspringgreen}{rgb}{0.09, 0.45, 0.27}
+% \definecolor{dartmouthgreen}{rgb}{0.05, 0.5, 0.06}
+% \definecolor{debianred}{rgb}{0.84, 0.04, 0.33}
+% \definecolor{mygray}{rgb}{0.5,0.5,0.5}
+% \definecolor{aurometalsaurus}{rgb}{0.43, 0.5, 0.5}
+% \definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}
+% \definecolor{arylideyellow}{rgb}{0.91, 0.84, 0.42}
+% \definecolor{brown(traditional)}{rgb}{0.59, 0.29, 0.0}
+% \definecolor{brass}{rgb}{0.71, 0.65, 0.26}
+% \definecolor{carrotorange}{rgb}{0.93, 0.57, 0.13}
+% \definecolor{darkpastelblue}{rgb}{0.47, 0.62, 0.8}
+% \definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
+
+\usepackage[utf8]{inputenc}
+\usepackage[binary-units]{siunitx}
+\usepackage[shortcuts]{extdash}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[printonlyused]{acronym} %for acronyms
+\usepackage{hyperref} %para url
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=brandeisblue,
+}
+\usepackage{mathtools} % loads amsmath
+\usepackage{textcomp} %\textregistered % or \textcopyright
+\usepackage{soul} % para tachar texto con una linea e.g \st{texto tachado}
+\usepackage{colortbl}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{hhline}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{lscape}
+\usepackage{afterpage}
+\usepackage{pgf}
+\usepackage{cleveref} %for references
+%music packages
+\usepackage{musicography}
+\usepackage{stackengine}
+%%para escribir codigo en LaTeX
+\usepackage{soul} %% to enable highlight a una linea de codigo
+\usepackage{listings,lstautogobble}[showlines=htrue,breakatwhitespace=true] 
+\lstloadlanguages{C}
+\lstset{ %language=[Sharp]C, %necesario para el emphasize,
+basicstyle=\fontfamily{pcr}\selectfont\footnotesize\color{black},
+keywordstyle=\color{blue(ryb)}\bfseries, % style for keywords
+commentstyle=\color{dartmouthgreen}\ttfamily,
+stringstyle=\color{brown(traditional)}\ttfamily, %procnamestyle=\color{brown(traditional)}\ttfamily
+%morecomment=[l][\color{brass}]{\#include},
+%morecomment=[l][\color{brass}]{\#define},
+%morecomment=[s][\color{brown(traditional)}]{/´}{´},
+morecomment=*[l][\special@on\color{dartmouthgreen}\itshape]{//},
+morecomment=*[s][\special@on\color{dartmouthgreen}\itshape]{/*}{*/},
+%morecomment=*[n][\special@on\color{darkpastelblue}]{(0x}{x0)},
+morestring=*[b][\special@on\color{byzantium}]",
+%escapechar=|,%
+otherkeywords={!,!=,~,\$,<, >=,=<,\_t,\_32},
+morekeywords={char,
+const,
+bool,
+double,
+float,
+int,
+int8,
+int16,
+int32,
+long,
+List,
+sizeof,
+short,
+static,
+struct,
+typedef,
+union,
+BaseType,
+Queue,
+QueuePointers,
+SemaphoreData,
+TaskHandle,
+TaskFunction,
+TickType,
+TimerHandle,
+UBaseType,
+uint,
+uint8,
+uint16,
+uint32,
+uint64,
+unsigned,
+volatile, 
+void,
+xQUEUE},
+escapeinside={(*@}{@*)},
+numbers=left, % where to put the line-numbers
+breaklines=true, %para hacer wrap lines
+numberstyle=\small, % the size of the fonts that are used for the line-numbers     
+backgroundcolor=\color{white},
+tabsize=2,
+showspaces=false, % show spaces adding particular underscores
+showstringspaces=false, % underline spaces within strings
+showtabs=false,
+alsoletter={_,\#,*},
+emph={\#if, \#include, \#define, \#else, \#endif,\#ifdef,\#ifndef},
+emphstyle={[2]\color{blue}},
+emphstyle=\color{darkscarlet},
+ emph={[2]
+ timInfo,
+ timer_alarm,
+ timer_autoreload,
+ timer_config,
+ timer_count_dir,
+ timer_group,
+ timer_idx,
+ timer_intr_mode,
+ timer_isr,
+ timer_start,
+ timer_src_clk,
+ gpio_num
+},
+literate={./}{
+{{\color{red}./}}}2 
+{.^}{{{\color{red}.\^{}}}}2 {&&}{{{\color{red}\&\&{}}}}2 %{=}{{{\color{red}=}}}1 {.}{{{\color{debianred}.}}}1 {!}{{{\color{red}!}}}1
+{Ä}{{\"A}}1%
+{Ö}{{\"O}}1%
+{Ü}{{\"U}}1%
+{ä}{{\"a}}1%
+{ö}{{\"o}}1%
+{ü}{{\"u}}1
+{á}{{\'a}}1
+{é}{{\'e}}1
+{í}{{\'i}}1
+{ó}{{\'o}}1
+{ú}{{\'u}}1
+{ñ}{{\~{n}}}1 % ñ = alt + 164
+%{_}{{\_}}1
+{^}{{\^{}}}1
+{~}{{$\sim$}}1
+{orOPER}{{||}}1
+{orEqual}{{|=\,\,\,}}1
+{&=}{{\&=\,\,\,}}1
+%{>}{{$>$\,\,\,}}1
+{<}{{$<$\,\,\,}}1
+{resHochkomma}{{\textbackslash"}}1
+{==}{{$==$\,\,}}1%
+{equal=}{{$=$\,\,}}1%
+{\%}{{\%\,\,}}1%
+{e=}{{$=$\,\,\,}}1
+{ß}{{\ss}}1%
+{ç}{{\c{c}}}1,
+framexrightmargin=5mm, 
+frame=shadowbox, 
+rulesepcolor=\color{bondiblue},
+autogobble=true}
+\usepackage{filecontents} %create data datatable
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\usepgfplotslibrary{units}
+\usepackage{forloop}
+%\usepackage{fmtcount}
+
+%for good fracs numbers visualization in tables
+\newcolumntype{C}{>{$}c<{$}}
+
+
+
+% normal line of code
+% highlighted line of code
+% lighter blue highlight
+% darker blue highlight 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\realnumberstyle[1]{}
+
+\makeatletter
+\newcommand{\zebra}[3]{%
+    {\realnumberstyle{#3}}%
+    \begingroup
+    \lst@basicstyle
+    \ifodd\value{lstnumber}%
+        \color{#1}%
+    \else
+        \color{#2}%
+    \fi
+        \rlap{\hspace*{\lst@numbersep}%
+        \color@block{\linewidth}{\ht\strutbox}{\dp\strutbox}%
+        }%
+    \endgroup
+}
+\makeatother
+
+%Tikz package
+\usepackage{tikz}
+\usepackage{verbatim}
+
+
+
+
+% Style to select only points from #1 to #2 (inclusive)
+\makeatletter
+
+\newif\ifspecial@env@
+\def\special@on{\global\special@env@true}
+\def\special@off{\global\special@env@false}
+
+\lst@AddToHook{DetectKeywords}{%
+    \global\let\last@lst@thestyle=\lst@thestyle
+}
+
+\def\emphstyle{%
+    \last@lst@thestyle
+    \aftergroup\special@off
+    \underbar
+}
+
+\def\keywordstyle{%
+    \ifspecial@env@
+        \last@lst@thestyle
+    \else
+        \color{blue}%
+    \fi
+    \aftergroup\special@off
+}
+\makeatother
+
+
+%\usepackage[active]{preview}
+%\PreviewEnvironment{tikzpicture}
+\usetikzlibrary{shapes,arrows,chains}
+%\setlength\PreviewBorder{5mm}%
+%FLOW CHART COMMAND
+
+%pagina en blanco
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+    
+%% HERE SOME TEXT SCPAPES
+\newcommand{\BASEPRI}{\texttt{BASEPRI }}
+\newcommand{\FIFO}{\texttt{FIFO }}
+\newcommand{\IO}{\texttt{I/O }}
+\newcommand{\idle}{\texttt{idle }}
+\newcommand{\ISR}{\texttt{ISR }}
+\newcommand{\IPSR}{\texttt{IPSR }}
+\newcommand{\IRQ}{\texttt{IRQ }}
+\newcommand{\ICR}{\texttt{ICR }}
+\newcommand{\mailbox}{\texttt{mailbox }}
+\newcommand{\NVIC}{\texttt{NVIC }}
+\newcommand{\PRIMASK}{\texttt{PRIMASK }}
+\newcommand{\RAM}{\texttt{RAM }}
+\newcommand{\register}{\texttt{register }}
+\newcommand{\ROM}{\texttt{ROM }}
+\newcommand{\SysTick}{\texttt{SysTick }}
+\newcommand{\TExaS}{\texttt{TExaS }}
+\newcommand{\UART}{\texttt{UART }}
+
+
+
+%new custom commads, defined by Kike.
+\newcommand{\ADCbit}[1]{\texttt{ADC{#1}}}
+\newcommand{\ADCREG}[1]{\texttt{ADC\_{#1}\_R}}
+\newcommand{\bitsRange}[2][50]{\texttt{{#1}-{#2}}}
+\newcommand{\CustomHex}[2][0000]{\texttt{0x{#1}.{#2}}}
+\newcommand{\GPIOPort}[1]{\texttt{GPIO\_PORT{#1}}}
+\newcommand{\GPIOPortR}[2][A]{\texttt{GPIO\_PORT{#1}\_{#2}\_R}}
+\newcommand{\GPIOPortHandler}[1]{\texttt{GPIO\_PORT{#1}\_Handler}}
+\newcommand{\HandlerISR}[1]{\texttt{#1\_Handler}}
+\newcommand{\IRQnr}[1]{\texttt{{#1}}}
+\newcommand{\NVICPRI}[1]{\texttt{NVIC\_PRI{#1}\_R}}
+\newcommand{\NVICEN}[1]{\texttt{NVIC\_EN{#1}\_R}}
+\newcommand{\NVICDIS}[1]{\texttt{NVIC\_DIS{#1}\_R}}
+\newcommand{\NVICST}[1]{\texttt{NVIC\_ST\_{#1}\_R}}
+\newcommand{\Ttimer}[2][A]{\texttt{Timer\_{#2}{#1}}}
+\newcommand{\xNrbit}[1]{$#1$-\texttt{bit}}
+\newcommand{\xNrbits}[1]{$#1$-\texttt{bits}}
+\newcommand{\camouflagegreenCellColor}{\cellcolor[rgb]{0.47, 0.53, 0.42}}
+\newcommand{\lavenderCellColor}{\cellcolor[rgb]{0.9, 0.9, 0.98}}
+\newcommand{\TabelleRowColorGray}{\rowcolor[rgb]{0.812,0.812,0.812}}
+\newcommand{\TabelleRowCellGray}{\cellcolor[rgb]{0.812,0.812,0.812}}
+\newcommand{\volties}[2][0]{$\si{{#1}\volt}_{#2}$}
+\newcommand{\volti}[1]{$\si{{#1}\volt}$}
+\newcommand{\voltiposi}[1]{$+\si{{#1}\volt}$}
+\newcommand{\voltinega}[1]{$-\si{{#1}\volt}$}
+
+
+
+%flow chart color definitions
+\definecolor{ballblue}{rgb}{0.13, 0.67, 0.8}
+\definecolor{celadon}{rgb}{0.67, 0.88, 0.69}
+\definecolor{coralred}{rgb}{1.0, 0.25, 0.25}
+
+\colorlet{lcfree}{celadon}
+\colorlet{lcnorm}{ballblue}
+\colorlet{lccong}{coralred}
