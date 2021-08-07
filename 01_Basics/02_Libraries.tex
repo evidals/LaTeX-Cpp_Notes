@@ -1,162 +1,77 @@
-\section{Control Statements}
-\label{sec:Control-Statements}
-%~\cref{sec:Control-Statements}
+\section{Usefull Libraries}
+\label{sec:Libraries}
+%~\cref{sec:Libraries}
+\subsection{\texttt{<cmath>}}
 
-C++ has 3 kind of control statements:(i) selection statementes, (ii) iteration statements and (iii) jump statements. It is said that most programs are formed by combining as many of these statements~\cite{deitel2017c++}. Each control statement can be modelled as an activity diagram using \ac{UML}.
-
-\begin{itemize}
-    \item selection statement: \texttt{if}-\texttt{else}, and \texttt{switch}.
-    \item iteration statement or loops: \texttt{while}, \texttt{do-while}, \texttt{for}, \texttt{range-based} (special \texttt{for}).
-    \item jump statements: \texttt{break}, \texttt{continue}, \texttt{return} and \texttt{goto}.
-\end{itemize}
-
-\subsection{Selection statement}
-\subsubsection{\texttt{if-else}}
-
-%begin minipages
-\begin{minipage}{.50\textwidth}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Figure Selection Statement - if-else
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CMATH TABLE
+\begin{table}[!h]
 \centering
-\includegraphics[width=0.65\linewidth]{01_Basics/figures/uml/SelectionStatement-00-UML-if-else.pdf}
-\captionof{figure}{UML \texttt{if-else} \\Activity Diagram Representation}
-\label{fig:ch01_Basics_UML_SelStatement-00-if-else}
-%~\ref{fig:ch01_Basics_UML_SelStatement-00-if-else} 
-%%%%%%%%%%%%%%%%%%%%%%%%%%End figure
-\end{minipage}
-\begin{minipage}{.25\textwidth}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Begin code
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
-if (cond_1)
-{
-    //do smth
-}
-else
-{
-    //do smth else
-    //else situation is not
-    //shown in UML diagram
-}
-\end{lstlisting}
-%%%%%%%%%%%%%%%%%%End Code
-\end{minipage}
-\vspace{0.5cm}
-%end minipages
+\arrayrulecolor{black}
+\begin{tabular}{l|l|l|l|} 
+\cline{2-4}
+ & Function & Description & Example \\ 
+\hhline{>{\TabelleArrayColorGray}->{\arrayrulecolor{black}}---|}
+\TabelleRowColorGray  01 & \texttt{ceil(x)} 
+                         & rounds $x$ to the smallest integer not less than $x$ 
+                         & \begin{tabular}[c]{@{}>{\TabelleRowCellGray}l@{}}
+                         \texttt{ceil(9.2)} $=10.0$\\
+                         \texttt{ceil(-9.8)} $=-9.0$\end{tabular} \\
+02  & \texttt{cos(x)}  
+    & trigonometric cosine of $x$ ($x$ in radians)  
+    & $\texttt{cos(0.0)}=1.0$ \\
+\TabelleRowColorGray 03 & \texttt{exp(x)} 
+                        &  exponential function $e^{x}$
+                        &  $\texttt{exp(1.0)} = 2.718282$\\
+04  & \texttt{fabs(x)} 
+    &  absolute value of $x$ 
+    &   \begin{tabular}[c]{@{}l@{}}
+        $\texttt{fabs(5.1)}=5.1$\\
+        $\texttt{fabs(0.0)}=0.0$\\
+        $\texttt{fabs(-8.6)}=8.6$\end{tabular} \\
+\TabelleRowColorGray 05 & \texttt{floor(x)}  
+                        &  rounds $x$ to the largest integer not greater than $x$
+                        &  \begin{tabular}[c]{@{}>{\TabelleRowCellGray}l@{}}
+                         \texttt{floor(9.2)} $=9.0$\\
+                         \texttt{floor(-9.8)} $=-10$\end{tabular} \\
+06  & \texttt{fmod(x, y)} 
+    & remainder of $x/y$ as a floating-point number  
+    & $\texttt{fmod(2.6, 1.2)}=0.2$ \\
+\TabelleRowColorGray 07 & \texttt{log(x)} 
+                        &  natural logarithm of $x$ (base $e$)
+                        &  $\texttt{log()2.718282}=1.0$\\
+08  & \texttt{log10(x)} 
+    &  logarithm of $x$ (base 10)
+    &  \begin{tabular}[c]{@{}l@{}}
+        $\texttt{log10(10.0)}=1.0$\\
+        $\texttt{log10(100.0)}=2.0$\end{tabular} \\
+\TabelleRowColorGray 09 & \texttt{pow(x, y)} 
+                        &  $x$ raised to power $y$, i.e. $x^y$
+                        &  $\texttt{pow(2.7)}=2^{7}=128$\\
+10  & \texttt{sin(x)} 
+    &  trigonometric sine of x (x in radians)
+    &  $\texttt{sin(0.0)}=0$\\
+\TabelleRowColorGray 11 & \texttt{sqrt(x)} 
+                        &  square root of x (where $x>=0$)
+                        &  $\texttt{sin(9.0)}=3.0$\\
+12  & \texttt{tan(x)} 
+    &  trigonometric tangent of $x$ ($x$ in radians)
+    &  $\texttt{tan(0.0)}=0$\\
+\hhline{>{\TabelleArrayColorGray}->{\arrayrulecolor{black}}---|}
+\end{tabular}
+\end{table}
 
-\subsubsection{\texttt{switch} Multiple-selection statement}
-
-%begin minipages
-\begin{minipage}{.65\textwidth}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Figure Selection Statement - if-else
-\centering
-\includegraphics[width=0.75\linewidth]{01_Basics/figures/uml/SelectionStatement-01-UML-switch.pdf}
-\captionof{figure}{UML \texttt{switch} \\Activity Diagram Representation}
-\label{fig:ch01_Basics_UML_SelStatement-01-switch}
-%~\ref{fig:ch01_Basics_UML_SelStatement-01-switch} 
-%%%%%%%%%%%%%%%%%%%%%%%%%%End figure
-\end{minipage}
-\begin{minipage}{.25\textwidth}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Begin code
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
-//example
-int grade{100};
-switch (grade/10)
-{
-    case 9:
-    case 10:
-        //do smt-1
-        break;
-    
-    case 8:
-        //do smt-2
-        break;
-        
-    case 7:
-    default:
-        //do-def
-        break;
-}
-\end{lstlisting}
-%%%%%%%%%%%%%%%%%%End Code
-\end{minipage}
-\vspace{0.5cm}
-%end minipages
+%%%%%%%% END CMATH TABLE
 
 
 
-\subsection{Iteration statement}
-\subsubsection{\texttt{while}-loop}
-%begin minipages
-\begin{minipage}{.50\textwidth}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Figure Selection Statement - while
-\centering
-\includegraphics[width=0.80\linewidth]{01_Basics/figures/uml/IterationStatement-00-UML-while.pdf}
-\captionof{figure}{UML \texttt{while} \\Activity Diagram Representation}
-\label{fig:ch01_Basics_UML_IterationStatement-00-while}
-%~\ref{fig:ch01_Basics_UML_IterationStatement-00-while} 
-%%%%%%%%%%%%%%%%%%%%%%%%%%End figure
-\end{minipage}
-\begin{minipage}{.25\textwidth}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Begin code
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
-while (cond_1)
-{
-    //do smth
-}
-\end{lstlisting}
-%%%%%%%%%%%%%%%%%%End Code
-\end{minipage}
-\vspace{0.5cm}
-%end minipages
 
-\subsubsection{\texttt{for}-loop}
-%begin minipages
-\begin{minipage}{.50\textwidth}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Figure Selection Statement - for loop
-\centering
-\includegraphics[width=0.80\linewidth]{01_Basics/figures/uml/IterationStatement-01-UML-for.pdf}
-\captionof{figure}{UML \texttt{for-loop} \\Activity Diagram Representation}
-\label{fig:ch01_Basics_UML_IterationStatement-01-for}
-%~\ref{fig:ch01_Basics_UML_IterationStatement-01-for} 
-%%%%%%%%%%%%%%%%%%%%%%%%%%End figure
-\end{minipage}
-\begin{minipage}{.415\textwidth}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Begin code
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
-//examples
-for (unsigned int i{10}; i %\texttt{>=}% 1; i--) {...}
-for (unsigned int i{20}; i %\texttt{>=}% 2; i -= 2) {...}
-\end{lstlisting}
-%%%%%%%%%%%%%%%%%%End Code
-\end{minipage}
-\vspace{0.5cm}
-%end minipages
 
-\subsubsection{\texttt{do-while}-loop}
-%begin minipages
-\begin{minipage}{.55\textwidth}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Figure Selection Statement - do-while
-\centering
-\includegraphics[width=0.58\linewidth]{01_Basics/figures/uml/IterationStatement-02-UML-do-while.pdf}
-\captionof{figure}{UML \texttt{do-while-loop} \\Activity Diagram Representation}
-\label{fig:ch01_Basics_UML_IterationStatement-01-for}
-%~\ref{fig:ch01_Basics_UML_IterationStatement-01-for} 
-%%%%%%%%%%%%%%%%%%%%%%%%%%End figure
-\end{minipage}
-\begin{minipage}{.25\textwidth}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Begin code
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
-//example:
-unsigned int counter{1}
-do
-{
-    //do smt
-    ++counter;
-} while (counter <= 10)
-\end{lstlisting}
-%%%%%%%%%%%%%%%%%%End Code
-\end{minipage}
-\vspace{0.5cm}
-%end minipages
+
+% \newcommand{\lavenderCellColor}{\cellcolor[rgb]{0.9, 0.9, 0.98}}
+% \newcommand{\TabelleRowColorGray}{\rowcolor[rgb]{0.812,0.812,0.812}}
+% \newcommand{\TabelleArrayColorGray}{\arrayrulecolor[rgb]{0.812,0.812,0.812}}
+% \newcommand{\TabelleRowCellGray}{\cellcolor[rgb]{0.812,0.812,0.812}}
+%
 
 % no numbers listing
 % \begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
