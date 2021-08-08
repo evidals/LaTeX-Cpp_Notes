@@ -1,0 +1,225 @@
+\section{Arrays and Vectors}
+\label{sec:Arrays-and-Vectors}
+%~\cref{sec:Libraries}
+\subsection{Difference}
+\begin{itemize}
+    \item array - they are fixed-size collections consisting of data items of the same type
+    \item vector - same as array but they can grow and shrink dynamically at execution time. 
+\end{itemize}
+
+\subsection{Array declaration}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Array Declaration
+\begin{minipage}{.5\textwidth}
+\end{minipage}\hspace{0.72cm}
+\begin{minipage}{.3\textwidth}
+\vspace{0.1cm}
+\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+%\texttt{array<type, arraySize> arrayName;}%
+\end{lstlisting}
+\end{minipage}
+%%%%%%%%%%%%%%%%%%%%%%%% END Array Declaration
+\\
+Examples:\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Array Declaration Examples
+\begin{minipage}{.5\textwidth}
+\end{minipage}\hspace{0.72cm}
+\begin{minipage}{.6\textwidth}
+\vspace{0.1cm}
+\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+array%\texttt{<}%int, 12%\texttt{>}% n1; // n1 is an array of 5 int values
+
+array%\texttt{<}%int, 5%\texttt{>}% n2{32, 27, 64, 18, 95}; // declaration and init
+
+array%\texttt{<}%int, 5%\texttt{>}% n3{}; // initialize elements with 0 
+
+//constant varaiable can be used to specify array size
+const size%\_%t arraySize{5} 
+array%\texttt{<}%int, arraySize%\texttt{>}% values; 
+\end{lstlisting}
+\end{minipage}
+\\
+%%%%%%%%%%%%%%%%%%%%%%%% END Array Declaration examples
+If there are fewer initializers than array elements, the remaining array elements are initialized
+to zero.\\
+
+\noindent Going through an array called \texttt{a}\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% going through array
+\begin{minipage}{.5\textwidth}
+\end{minipage}\hspace{0.72cm}
+\begin{minipage}{.6\textwidth}
+\vspace{0.1cm}
+\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+for (size%\_%t j{0}; j < a.size(); ++j)
+{
+    //do smt
+}
+\end{lstlisting}
+\end{minipage}
+%%%%%%%%%%%%%%%%%%%%%%%% END going through array
+% no numbers listing
+% \begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+
+% \begin{minipage}{.9\textwidth}
+% \begin{lstlisting}[frame=tlrb,showlines=htrue,firstnumber=1,mathescape=true,escapechar=\%,columns=flexible]
+% //code here
+% \end{lstlisting}
+% \end{minipage}
+
+% \begin{lstlisting}[frame=tlrb,showlines=htrue,firstnumber=1,mathescape=true,escapechar=\%,columns=flexible]
+% //Program 12.1
+% \end{lstlisting}
+    
+%reference:
+%~\ref{tab:t_ch11_UART_Registers} tab:t_ch12_edgeTriggeredModes
+%~\ref{fig:RT_ch01} 
+%\texttt{Ascii}
+%\texttt{UART}
+%\texttt{mailbox}
+%\texttt{FIFO}
+%\texttt{I/O}
+%\underline{}
+%$\texttt{b}_0$
+%\sim = ~
+
+%percent
+%n%\%%10;
+
+%for loops
+% \newcounter{nnCount}
+% \forloop{nnCount}{0}{\value{nnCount}<8}{&IME }  
+% \forloop{nnCount}{0}{\value{nnCount}<8}{&PMC\arabic{nnCount} }
+
+
+%Equation array
+% \begin{eqnarray*}
+%  & = & \text{minimun}\\
+%  & = & \text{maximun}\\
+%  & = &  \\
+%  & = & \\
+%  & = & 
+% \end{eqnarray*}
+
+% \begin{description}
+% \item[Remark 1] If
+% \end{description}
+
+% \begin{description}
+% \item[Remark 1] If
+% \item[Remark 2] An
+% \item[Remark 3] With 
+% \end{description}
+
+%Poner figura
+% \begin{figure}[!h] %%%%%%%%%%%%%%%%%%%%%%% Begin Figure Directory
+% \centering
+% \includegraphics[width=0.70\linewidth]{figuresRT/ch06/RT-CH06-
+% \caption{Free-space management.}
+% \label{fig:ch01_00}
+% %~\ref{ffig:ch01_00} 
+% \end{figure}       %%%%%%%%%%%%%%%%%%%%%%% End Figure
+
+%Poner Figura con minipages
+% %begin minipages
+% \begin{minipage}{.45\textwidth}
+% %here some text.
+% \end{minipage}
+% \begin{minipage}{.55\textwidth}
+% %and here the image.
+% \centering
+% \includegraphics[width=0.95\linewidth]{figures/ch12/ch12_lab12_squeme1.pdf}
+% \captionof{figure}{Lab 12 diagram connections}
+%\label{fig:RT_ch04_MACQ-EXAMPLE-01-oldDataIsLost}
+%~\ref{fig:RT_ch04_MACQ-EXAMPLE-01-oldDataIsLost} 
+% \end{minipage}
+% \vspace{0.5cm}
+% %end minipages
+
+% %Poner Figura y al costado codigo
+% %begin minipages
+% \begin{minipage}{.60\textwidth}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Figure Selection Statement - while
+% \centering
+% \includegraphics[width=0.50\linewidth]{01_Basics/figures/uml/IterationStatement-00-UML-while.pdf}
+% \captionof{figure}{UML \texttt{while} Activity Diagram Representation}
+% \label{fig:ch01_Basics_UML_IterationStatement-00-while}
+% %~\ref{fig:ch01_Basics_UML_IterationStatement-00-while} 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%End figure
+% \end{minipage}
+% \begin{minipage}{.25\textwidth}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Begin code
+% \begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+% some awesome code here
+% \end{lstlisting}
+% %%%%%%%%%%%%%%%%%%End Code
+% \end{minipage}
+% \vspace{0.5cm}
+% %end minipages
+
+
+%\begin{enumerate}
+%	\item Initialize timer and directions registers
+%    \item Specify initial state
+%    \item Perform FSM controller
+%   \begin{enumerate}
+%    	\item Call an output function, which depends on the state
+%        \item Delay, which depends on the state
+%        \item Call an input function to get the status of the coin sensors
+%        \item Change states, which dependes on the state and the input
+%    \end{enumerate}
+%\end{enumerate}
+
+% \begin{enumerate}
+% 	\item Current instruction is finished,
+%     \item Eight registers are pushed on the stack,
+%     \item LR is set to 0xFFFFFFF9,
+%     \item IPSR is set to the interrupt number,
+%     \item PC is loaded with the interrupt vector
+% \end{enumerate}
+
+% Itemize categoriza poniendo (.) en lugar de números
+% \begin{itemize} 
+% 	\item I
+% 	\item I
+% 	\item Y
+% 	\item Y
+% 	\item Y
+% 	\item Y
+% 	\item 
+% \end{itemize}
+
+% \begin{table}[!h]
+% \centering
+% \begin{tabular}{|l|l|l|} \hline
+% $p$ & bit Field & Interrupt         \\\hline
+% $3$ & \bitsRange[31]{29} & Interrupt [$4m+3$]  \\\hline
+% $2$ & \bitsRange[23]{21} & Interrupt [$4m+2$]  \\\hline
+% $1$ & \bitsRange[15]{13} & Interrupt [$4m+1$]  \\\hline
+% $0$ & \bitsRange[7]{5} & Interrupt [$4m$]   \\\hline
+% \end{tabular}
+% \caption{pasteCaption}
+% \label{tab:t_rt_ch04_}
+% ~\ref{tab:t_rt_ch04_}
+% \end{table}
+
+% Insertar URL
+%\url{https://www.osha.gov/Publications/laboratory/OSHAfactsheet-laboratory-safety-noise.pdf}\\
+
+% \newcommand{\bitsRange}[2][50]{\texttt{{#1}-{#2}}}
+% \newcommand{\CustomHex}[2][0000]{\texttt{0x{#1}.{#2}}}
+% \newcommand{\GPIOPort}[1]{\texttt{GPIO\_PORT{#1}}}
+% \newcommand{\GPIOPortR}[2][A]{\texttt{GPIO\_PORT{#1}\_{#2}\_R}}
+% \newcommand{\GPIOPortHandler}[1]{\texttt{GPIO\_PORT{#1}\_Handler}}
+% \newcommand{\HandlerISR}[1]{\texttt{#1\_Handler}}
+% \newcommand{\IRQnr}[1]{\texttt{{#1}}}
+% \newcommand{\NVICPRI}[1]{\texttt{NVIC\_PRI{#1}\_R}}
+% \newcommand{\NVICEN}[1]{\texttt{NVIC\_EN{#1}\_R}}
+% \newcommand{\NVICDIS}[1]{\texttt{NVIC\_DIS{#1}\_R}}
+% \newcommand{\Ttimer}[2][A]{\texttt{Timer\_{#2}{#1}}}
+% \newcommand{\xNrbit}[1]{$#1$-\texttt{bit}}
+% \newcommand{\xNrbits}[1]{$#1$-\texttt{bits}}
+% \newcommand{\camouflagegreenCellColor}{\cellcolor[rgb]{0.47, 0.53, 0.42}}
+% \newcommand{\lavenderCellColor}{\cellcolor[rgb]{0.9, 0.9, 0.98}}
+% \newcommand{\volties}[2][0]{$\si{{#1}\volt}_{#2}$}
+% \newcommand{\volti}[1]{$\si{{#1}\volt}$}
+% \newcommand{\voltiposi}[1]{$+\si{{#1}\volt}$}
+% \newcommand{\voltinega}[1]{$-\si{{#1}\volt}$}
