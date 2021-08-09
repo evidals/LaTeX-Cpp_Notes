@@ -56,6 +56,46 @@ for (size%\_%t j{0}; j < a.size(); ++j)
 \end{lstlisting}
 \end{minipage}
 %%%%%%%%%%%%%%%%%%%%%%%% END going through array
+
+\subsection{Range-Based style}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% going through array
+\begin{minipage}{.5\textwidth}
+\end{minipage}\hspace{0.72cm}
+\begin{minipage}{.6\textwidth}
+\vspace{0.1cm}
+\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+array%\texttt{<}%int, 5%\texttt{>}% items{1, 2, 3, 4, 5};
+for (int item : items)
+{
+    cout %\texttt{<<}% item %\texttt{<<}% " ";
+}
+
+//Equivalent to:
+for (int counter{0}; counter < items.size(); ++counter) 
+{
+    cout %\texttt{<<}% items[counter] %\texttt{<<}% " ";
+}
+\end{lstlisting}
+\end{minipage}
+\\
+%%%
+\noindent To modify the elements we can easily write:\\
+\begin{minipage}{.5\textwidth}
+\end{minipage}\hspace{0.72cm}
+\begin{minipage}{.6\textwidth}
+\vspace{0.1cm}
+\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+for (int& itemRef : items)
+{
+    // do smt modifying the content
+    itemRef *= 2;
+}
+\end{lstlisting}
+\end{minipage}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%% END going through array
 % no numbers listing
 % \begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
 
