@@ -94,6 +94,47 @@ for (int& itemRef : items)
 \end{lstlisting}
 \end{minipage}
 
+\subsection{Examples}
+
+\begin{minipage}{.5\textwidth}
+\end{minipage}\hspace{0.72cm}
+\begin{minipage}{.6\textwidth}
+\vspace{0.1cm}
+\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+//example printArray
+// output array with two rows and three columns
+void printArray(const array%\texttt{<}%array%\texttt{<}%int, columns%\texttt{>}%, row%\texttt{>}%& row_x)
+{
+    // loop through array's rows
+    for (auto const& row : row_x)
+    {
+        // loop through columns of current row
+        for (auto const& col : row)
+        {
+            cout %\texttt{<<}% element %\texttt{<<}% ' ';
+        }
+    }
+}
+\end{lstlisting}
+\end{minipage}
+\\
+which is equivalent to:\\
+\begin{minipage}{.5\textwidth}
+\end{minipage}\hspace{0.72cm}
+\begin{minipage}{.6\textwidth}
+\vspace{0.1cm}
+\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+for (size_t row{0}; row < a.size(); ++row) 
+{
+    for (size_t column{0}; column < a[row].size(); ++column)
+    {
+        cout << a[row][column] << ' ';
+    }
+    cout << endl;
+}
+\end{lstlisting}
+\end{minipage}
+\\
 
 %%%%%%%%%%%%%%%%%%%%%%%% END going through array
 % no numbers listing
