@@ -51,8 +51,8 @@
 %%para escribir codigo en LaTeX
 \usepackage{soul} %% to enable highlight a una linea de codigo
 \usepackage{listings,lstautogobble}[showlines=htrue,breakatwhitespace=true] 
-\lstloadlanguages{C}
-\lstset{ %language=[Sharp]C, %necesario para el emphasize,
+\lstloadlanguages{C++}
+\lstset{ %language=[11]C, %necesario para el emphasize,
 basicstyle=\fontfamily{pcr}\selectfont\footnotesize\color{black},
 keywordstyle=\color{blue(ryb)}\bfseries, % style for keywords
 commentstyle=\color{dartmouthgreen}\ttfamily,
@@ -65,11 +65,13 @@ morecomment=*[s][\special@on\color{dartmouthgreen}\itshape]{/*}{*/},
 %morecomment=*[n][\special@on\color{darkpastelblue}]{(0x}{x0)},
 morestring=*[b][\special@on\color{byzantium}]",
 %escapechar=|,%
-otherkeywords={!,!=,~,\$,<, >=,=<,\_t,\_32},
+otherkeywords={!,!=,~,\$,>=,=<,\_t,\_32},
 morekeywords={char,
+class,
 const,
 bool,
 double,
+explicit,
 float,
 int,
 int8,
@@ -77,6 +79,8 @@ int16,
 int32,
 long,
 List,
+public,
+private,
 sizeof,
 short,
 static,
@@ -149,8 +153,9 @@ literate={./}{
 {orOPER}{{||}}1
 {orEqual}{{|=\,\,\,}}1
 {&=}{{\&=\,\,\,}}1
-%{>}{{$>$\,\,\,}}1
-{<}{{$<$\,\,\,}}1
+{>}{{\,\texttt{>}\,}}1
+{<}{{\texttt{<}\,}}1
+{'}{{\,\texttt{\textquotesingle}\,}}1
 {resHochkomma}{{\textbackslash"}}1
 {==}{{$==$\,\,}}1%
 {equal=}{{$=$\,\,}}1%

@@ -1,0 +1,92 @@
+\section{Including the class header in the source code file}
+Example of using header (\texttt{.h}) and and the \texttt{.cpp} file\\
+\begin{itemize}
+    \item Inside the header we will define the class declaration.
+    \item Mainwhile in the \texttt{.cpp} we will define the class-member functions.
+\end{itemize}
+
+\subsection{Header \texttt{.h}}
+\begin{minipage}{.5\textwidth}
+\end{minipage}\hspace{0.0cm}
+\begin{minipage}{.8\textwidth}
+\vspace{0.1cm}
+\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+#include <string.h>
+
+//prevent multiple inclussion of header
+#ifndef DATE_H
+#define DATE_H
+
+class Date{
+public:
+    explicit Date(unsigned int = 1, unsigned int = 1, unsigned int = 2000)
+    std::string toString() const;
+    
+private:
+    unsigned int moth;
+    unsigned int day;
+    unsigned int year;
+}; //do not forget the semicolon
+
+#endif
+\end{lstlisting}
+\end{minipage}
+
+\subsection{\texttt{.cpp}}
+\begin{minipage}{.5\textwidth}
+\end{minipage}\hspace{0.0cm}
+\begin{minipage}{.8\textwidth}
+\vspace{0.1cm}
+\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+#include <sstream>
+#include <string>
+#include <Date.h> //INCLUDE DEFINITION OF THE HEADER!
+usingnamespace std;
+
+//Date constructor (should do range checking)
+Date::Date(unsigned int m, unsigned d unsigned int y)
+    : month{m}, day{d}, year{y} {}
+    
+//print Date in the format mm/dd/yyyy
+string Date::toString() const {
+    ostringstream output;
+    output <<%\,% month <<%\,% '/' <<%\,% day <<%\,% '/' <<%\,% year;
+    return output.str();
+}
+#endif
+\end{lstlisting}
+\end{minipage}
+
+
+\subsection{Example}
+\begin{minipage}{.5\textwidth}
+\end{minipage}\hspace{0.0cm}
+\begin{minipage}{.8\textwidth}
+\vspace{0.1cm}
+\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+#include <iostream>
+#include "Date.h" // include definition of class Date from Date.h
+using namespace std;
+
+int main(){
+    Date date1{7, 4, 2004};
+    Date date2; // date2 defaults to 1/1/2000
+    
+    cout << "date1 = " << date1.toString() << "\ndate2 = " << date2.toString() << "\n\n";
+    
+    cout << "After default memberwise assignment, date2 = " << date2.toString() << endl;
+}
+\end{lstlisting}
+\end{minipage}
+
+\begin{minipage}{.5\textwidth}
+\end{minipage}\hspace{0.0cm}
+\begin{minipage}{.8\textwidth}
+Output:\\
+\vspace{-0.5cm}
+\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+date1 = 7/4/2004
+date2 = 1/1/2000
+After default memberwise assignment, date2 = 7/4/2004
+\end{lstlisting}
+\end{minipage}
