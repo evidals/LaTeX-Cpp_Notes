@@ -1,0 +1,45 @@
+% MicroController Commands
+% usDef = User Defined
+
+\newcommand{\BASEPRI}{\texttt{BASEPRI }}
+\newcommand{\FIFO}{\texttt{FIFO }}
+\newcommand{\IO}{\texttt{I/O }}
+\newcommand{\idle}{\texttt{idle }}
+\newcommand{\ISR}{\texttt{ISR }}
+\newcommand{\IPSR}{\texttt{IPSR }}
+\newcommand{\IRQ}{\texttt{IRQ }}
+\newcommand{\ICR}{\texttt{ICR }}
+\newcommand{\mailbox}{\texttt{mailbox }}
+\newcommand{\NVIC}{\texttt{NVIC }}
+\newcommand{\PRIMASK}{\texttt{PRIMASK }}
+\newcommand{\RAM}{\texttt{RAM }}
+\newcommand{\register}{\texttt{register }}
+\newcommand{\ROM}{\texttt{ROM }}
+\newcommand{\SysTick}{\texttt{SysTick }}
+\newcommand{\TExaS}{\texttt{TExaS }}
+\newcommand{\UART}{\texttt{UART }}
+
+%new custom commands, defined by Kike.
+\newcommand{\ADCbit}[1]{\texttt{ADC{#1}}}
+\newcommand{\ADCREG}[1]{\texttt{ADC\_{#1}\_R}}
+\newcommand{\bitsRange}[2][50]{\texttt{{#1}-{#2}}}
+\newcommand{\CustomHex}[2][0000]{\texttt{0x{#1}.{#2}}}
+\newcommand{\GPIOPort}[1]{\texttt{GPIO\_PORT{#1}}}
+\newcommand{\GPIOPortR}[2][A]{\texttt{GPIO\_PORT{#1}\_{#2}\_R}}
+\newcommand{\GPIOPortHandler}[1]{\texttt{GPIO\_PORT{#1}\_Handler}}
+\newcommand{\HandlerISR}[1]{\texttt{#1\_Handler}}
+\newcommand{\IRQnr}[1]{\texttt{{#1}}}
+\newcommand{\NVICPRI}[1]{\texttt{NVIC\_PRI{#1}\_R}}
+\newcommand{\NVICEN}[1]{\texttt{NVIC\_EN{#1}\_R}}
+\newcommand{\NVICDIS}[1]{\texttt{NVIC\_DIS{#1}\_R}}
+\newcommand{\NVICST}[1]{\texttt{NVIC\_ST\_{#1}\_R}}
+\newcommand{\Ttimer}[2][A]{\texttt{Timer\_{#2}{#1}}}
+\newcommand{\xNrbit}[1]{$#1$-\texttt{bit}}
+\newcommand{\xNrbits}[1]{$#1$-\texttt{bits}}
+\newcommand{\volties}[2][0]{$\si{{#1}\volt}_{#2}$}
+\newcommand{\volti}[1]{$\si{{#1}\volt}$}
+\newcommand{\voltiposi}[1]{$+\si{{#1}\volt}$}
+\newcommand{\voltinega}[1]{$-\si{{#1}\volt}$}
+
+%To easy write double backslash
+\newcommand{\dueBackslash}{\textbackslash\textbackslash}

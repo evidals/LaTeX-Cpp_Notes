@@ -9,33 +9,31 @@
 
 \subsection{Array declaration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Array Declaration
-\begin{minipage}{.5\textwidth}
-\end{minipage}\hspace{0.72cm}
-\begin{minipage}{.3\textwidth}
-\vspace{0.1cm}
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
-%\texttt{array<type, arraySize> arrayName;}%
-\end{lstlisting}
+%\begin{minipage}{\MPWxCONSIDERxNUMERATIONxFORxLISTING\textwidth}
+%\end{minipage}{\hspaceNumerationBeforeListing}
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+array<type, arraySize> arrayName;
+\end{CPPCode}
 \end{minipage}
 %%%%%%%%%%%%%%%%%%%%%%%% END Array Declaration
 \\
 Examples:\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Array Declaration Examples
-\begin{minipage}{.5\textwidth}
-\end{minipage}\hspace{0.72cm}
-\begin{minipage}{.6\textwidth}
-\vspace{0.1cm}
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
-array%\texttt{<}%int, 12%\texttt{>}% n1; // n1 is an array of 5 int values
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+array<int, 12> n1; ¿\hspace{3.2cm}¿// ¿\codecomment{n1 is an array of 5 int values}¿
 
-array%\texttt{<}%int, 5%\texttt{>}% n2{32, 27, 64, 18, 95}; // declaration and init
+array<int, 5> n2{32, 27, 64, 18, 95}; // ¿\codecomment{declaration and init}¿
 
-array%\texttt{<}%int, 5%\texttt{>}% n3{}; // initialize elements with 0 
+array<int, 5> n3{}; ¿\hspace{3.0cm}¿// ¿\codecomment{initialize elements with 0}¿
 
-//constant varaiable can be used to specify array size
-const size%\_%t arraySize{5} 
-array%\texttt{<}%int, arraySize%\texttt{>}% values; 
-\end{lstlisting}
+//constant varaiable can be used to specify ¿\codecomment{array size}¿
+const size_t arraySize{5} 
+array<int, ¿arraySize¿> n4{10, 20, 30}; //values; 
+\end{CPPCode}
 \end{minipage}
 \\
 %%%%%%%%%%%%%%%%%%%%%%%% END Array Declaration examples
@@ -44,95 +42,92 @@ to zero.\\
 
 \noindent Going through an array called \texttt{a}\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% going through array
-\begin{minipage}{.5\textwidth}
-\end{minipage}\hspace{0.72cm}
-\begin{minipage}{.6\textwidth}
-\vspace{0.1cm}
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
-for (size%\_%t j{0}; j < a.size(); ++j)
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+for (size_t j{0}; j ¿<¿ a.size(); ++j)
 {
-    //do smt
+    //¿\codecomment{do smt}¿
 }
-\end{lstlisting}
+\end{CPPCode}
 \end{minipage}
 %%%%%%%%%%%%%%%%%%%%%%%% END going through array
 
-\subsection{Range-Based style}
+\subsection{Array Declaration in range-Based style}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% going through array
-\begin{minipage}{.5\textwidth}
-\end{minipage}\hspace{0.72cm}
-\begin{minipage}{.6\textwidth}
-\vspace{0.1cm}
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
-array%\texttt{<}%int, 5%\texttt{>}% items{1, 2, 3, 4, 5};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+array<int, 5> items{1, 2, 3, 4, 5};
 for (int item : items)
 {
-    cout %\texttt{<<}% item %\texttt{<<}% " ";
+    cout ¿<¿¿<¿ item ¿<¿¿<¿ " ";
 }
 
 //Equivalent to:
-for (int counter{0}; counter < items.size(); ++counter) 
+for (int counter{0}; counter ¿<¿ items.size(); ++counter) 
 {
-    cout %\texttt{<<}% items[counter] %\texttt{<<}% " ";
+    cout ¿<¿¿<¿ items[counter] ¿<¿¿<¿ " ";
 }
-\end{lstlisting}
+\end{CPPCode}
 \end{minipage}
 \\
 %%%
 \noindent To modify the elements we can easily write:\\
-\begin{minipage}{.5\textwidth}
-\end{minipage}\hspace{0.72cm}
-\begin{minipage}{.6\textwidth}
-\vspace{0.1cm}
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
 for (int& itemRef : items)
 {
-    // do smt modifying the content
+    // ¿\codecomment{do smt modifying the content}¿
     itemRef *= 2;
 }
-\end{lstlisting}
+\end{CPPCode}
 \end{minipage}
+
+
+\subsection{Local Arrays}
+A static local variable in a function definition exists for the program’s duration but is visible only in the function’s body.
+\subsubsection{Static Local Array}
+If a static array is not initialized explicitly by you, each element of that array is initialized to zero by the compiler when the array is created. Recall that C++ does not perform such default initialization for other local variables.
 
 \subsection{Examples}
 
-\begin{minipage}{.5\textwidth}
-\end{minipage}\hspace{0.72cm}
-\begin{minipage}{.6\textwidth}
-\vspace{0.1cm}
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
 //example printArray
-// output array with two rows and three columns
-void printArray(const array%\texttt{<}%array%\texttt{<}%int, columns%\texttt{>}%, row%\texttt{>}%& row_x)
+// output ¿\codecomment{array with two rows and three columns}¿
+void printArray(const array<array<int, columns>, row>& row_x)
 {
-    // loop through array's rows
+    // loop through ¿\codecomment{array}'¿s rows
     for (auto const& row : row_x)
     {
         // loop through columns of current row
         for (auto const& col : row)
         {
-            cout %\texttt{<<}% element %\texttt{<<}% ' ';
+            cout ¿<¿¿<¿ element ¿<¿¿<¿ ' ';
         }
     }
 }
-\end{lstlisting}
+\end{CPPCode}
 \end{minipage}
 \\
 which is equivalent to:\\
-\begin{minipage}{.5\textwidth}
-\end{minipage}\hspace{0.72cm}
-\begin{minipage}{.6\textwidth}
-\vspace{0.1cm}
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
-for (size_t row{0}; row < a.size(); ++row) 
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+for (size_t row{0}; row ¿<¿ a.size(); ++row) 
 {
-    for (size_t column{0}; column < a[row].size(); ++column)
+    for (size_t column{0}; column ¿<¿ a[row].size(); ++column)
     {
-        cout << a[row][column] << ' ';
+        cout ¿<¿¿<¿ a[row][column] ¿<¿¿<¿ ' ';
     }
-    cout << endl;
+    cout ¿<¿¿<¿ endl;
 }
-\end{lstlisting}
+\end{CPPCode}
 \end{minipage}
 \\
 

@@ -1,0 +1,47 @@
+\section{Setup}
+\label{sec:Setup}
+%~\cref{sec:Setup}
+
+\subsection{Installation in Windows using VSCode}
+\label{subsec:Installation-VSCode}
+%~\cref{subsec:Installation-VSCode}
+
+\begin{enumerate}
+    \item Download and install VSCode
+    \item Go to Extension and download the following:
+        \begin{itemize}
+            \item C/C++ for Visual Studio Code |Author: Microsoft
+            \item Code Runner | Author: Jun Han
+        \end{itemize}
+    \item Create a Folder where you want to have your C-Files, e.g. \verb!F:\LOK-01\05-Programs_Cpp!
+    \item In VSCode: go to File > Open Folder
+    \item In VSCode: Move the cursor arround the name in the Explorer Tree, then create a new file.
+    \item Download the compiler, i.e. MinGW-w64
+        \begin{itemize}
+            \item Follow the guide of: \url{https://code.visualstudio.com/docs/cpp/config-mingw}. The following is the same, just remarks:
+            \item You can also find the compiler in \url{https://www.mingw-w64.org/downloads/#mingw-builds}.
+            \item Find \textbf{MSYS 2} and below the title it says: Installation: Github.
+            \underline{Click on Github}. 
+            Again you should read the manual from code.visualstudio.\\
+                \begin{table}[!h]
+                \centering
+\begin{tblr}{
+  vline{-} = {1-2}{},
+  hline{1-3} = {-}{},
+}
+Item                      & Version & Host    & {GCC/\\MinGW-w64 Ver.} & Language        & {Additional SW in \\Package MANAGER} \\
+{\textbf{MSYS2}} & Rolling & Windows & 12.2.0/trunk          & {Ada, C, \\C++, Fortran,\\ Obj-C, Obj-C++,\\ OCaml } & { many }      \\
+                          &         &         & Visited: 15.12.2022            &                 &                                      
+                \end{tblr}
+                \end{table}
+            \item \lstinline[basicstyle=\small\ttfamily]{[UCRT64] ~ $ pacman -S mingw-w64-ucrt-x86_64-gcc}
+            \item \lstinline[basicstyle=\small\ttfamily]{[UCRT64] ~ $ gcc --version}
+            \item \lstinline[basicstyle=\small\ttfamily]{[UCRT64] ~ $ pacman -Suy}
+            \item \lstinline[basicstyle=\small\ttfamily]{[UCRT64] ~ $ pacman -S --needed base-devel mingw-w64-x86_64-toolchain}
+        \end{itemize}
+\end{enumerate}
+
+
+
+\subsection{Theme}
+VSCode Theme: \href{https://vscodethemes.com/e/enkia.tokyo-night/tokyo-night-light?language=javascript}{Tokio Night}

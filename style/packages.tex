@@ -1,0 +1,154 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[hmargin={2.0cm,2.0cm},height=24cm]{geometry}
+\setlength\parindent{1.1cm}
+\usepackage{microtype}
+%[margin=1.5cm]{geometry}
+\usepackage[binary-units]{siunitx}
+\usepackage[shortcuts]{extdash}
+\usepackage[table,xcdraw,dvipsnames]{xcolor}%para definir colores
+\usepackage[printonlyused]{acronym} %for acronyms
+
+%\usepackage[paper=portrait,pagesize] % para poner en horizontal (landscape) la pagina
+
+%%% Style for Todo List
+\input{style/style4TodoList.tex}
+
+\usepackage{makeidx} % for word index
+\makeindex
+
+\usepackage{graphicx}
+\graphicspath{ {figures/} }
+
+\usepackage{lmodern}
+\usepackage{lscape}
+\usepackage{afterpage}
+\usepackage{filecontents} %create data datatable
+\usepackage{soul} %para hacer strike al texto \st{} 
+%soul tambien es para : to enable highlight a una linea de codigo
+\usepackage{forest} %para hacer system structure files, ver % https://tex.stackexchange.com/questions/5073/making-a-simple-directory-tree
+%Tikz Settings
+
+% for sub lists
+\usepackage{tikz}
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{shapes,arrows.meta,chains}
+\usetikzlibrary {datavisualization}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\usepgfplotslibrary{units}
+\usepgfplotslibrary{patchplots}
+
+%para usar contadores
+\usepackage{forloop}
+
+\usepackage{stackengine}
+%Para escribir codigo
+\usepackage{listings,lstautogobble}[showlines=htrue,breakatwhitespace=true] 
+\input{style/style4Listing}
+
+% \lstset{ %language=[Sharp]C, %necesario para el emphasize,
+% }
+\usepackage{filecontents} %create data datatable
+
+
+%for recognize the comment colors
+% Style to select only points from #1 to #2 (inclusive)
+\makeatletter
+
+\newif\ifspecial@env@
+\def\special@on{\global\special@env@true}
+\def\special@off{\global\special@env@false}
+
+\lst@AddToHook{DetectKeywords}{%
+    \global\let\last@lst@thestyle=\lst@thestyle
+}
+
+\def\emphstyle{%
+    \last@lst@thestyle
+    \aftergroup\special@off
+    \underbar
+}
+
+\def\keywordstyle{%
+    \ifspecial@env@
+        \last@lst@thestyle
+    \else
+        \color{blue}%
+    \fi
+    \aftergroup\special@off
+}
+\makeatother
+
+
+%extracted from:
+%https://tex.stackexchange.com/questions/7032/good-way-to-make-textcircled-numbers
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+% \newcommand*\circledMath[1]{\tikz[baseline=(char.base)]{
+%             \node[shape=circle,draw,inner sep=2pt] (char) {${#1}$};}}
+
+%Mathematical Packages
+\usepackage{textcomp} %para tener el simbolo de division en texto ver: https://tex.stackexchange.com/questions/108035/is-there-a-way-to-produce-this-division-symbol-%C3%B7
+\usepackage{enumerate} %para poder enumerar con romanos (i),..
+\usepackage{etoolbox}
+\usepackage{amsfonts} %for R or C font
+\usepackage{mathtools, amssymb}
+\newtagform{bold}{\bfseries(}{)}
+\usetagform{bold}
+\usetikzlibrary{calc} % for ticks plots
+\usepackage[thref, amsmath, thmmarks]{ntheorem}%
+
+\usepackage{chngcntr} %para contador
+
+    
+\usepackage{stackengine}
+\newcommand\exponvar[2]
+{
+    \stackMath\Shortstack[c]{{\scalebox{.7}{#2}} {#1}}
+}
+\newcommand\TranslatedText[2]
+{
+    \stackengine{\stackgap}{\text{#1}}{{\scalebox{.7}{(#2)}}}{U}{\stackalignment}{\quietstack}{\useanchorwidth}{\stacktype}\!\!
+}
+
+\usepackage{physics}
+
+%References packages
+%ALWAYS FIRST CAPTION THEN HYPERREF
+\usepackage{caption} 
+\usepackage{hyperref} %para url
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=brandeisblue,
+}
+
+\usepackage{cleveref} %for references
+
+\newcommand\note[1][]{\subsection{#1}\ifblank{#1}{\hskip-\labelsep}{\relax}}% 
+
+
+%para tablas
+\usepackage{colortbl}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{hhline}
+\usepackage{array}
+\usepackage{tabularray}
+\UseTblrLibrary{counter} %in order to fix error of counters!
+%for good fracs numbers visualization in tables
+\newcolumntype{C}{>{$}c<{$}}
+\newlength\llength
+\llength=1.38ex\relax
+\input{style/usDefCommand4Math.tex}
+\input{style/usDefCommand4Table.tex}
+\input{style/usDefCommand4uC.tex}
+
+% \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+% \renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
+% \renewcommand{\labelenumiv}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
+%\renewcommand{\labelenumii}{\theenumii}
+%\renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}

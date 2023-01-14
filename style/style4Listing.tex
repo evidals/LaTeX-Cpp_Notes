@@ -1,0 +1,783 @@
+%\usepackage{listings,lstautogobble}[showlines=htrue,breakatwhitespace=true] % first line
+
+\usepackage{textcomp} %necessary for apostroph
+%SEE: https://tex.stackexchange.com/questions/145416/how-to-have-straight-single-quotes-in-lstlistings
+%  You need to load the textcomp package and add upquote=true to your \lstset command. See §4.7 of the listings documentation. Alternatively, you can simply load the upquote package, which will make all verbatim quotes single quotes
+
+\lstloadlanguages{C, Matlab}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%% MATLAB %%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%some matlab definitions were extracted from: https://gist.github.com/eyliu/120689
+\lstdefinestyle{Matlab-Classic}{
+language=Matlab,
+upquote=true, %necessary to show apostroph '
+basicstyle=\fontfamily{pcr}\selectfont\footnotesize\color{black},
+identifierstyle=\color{black},%
+%keywordstyle=\color{darkraspberry}\bfseries, % style for keywords
+keywordstyle=[1]\color{Blue}\bfseries,        % MATLAB functions bold and blue
+keywordstyle=[2]\color{darkraspberry}\bfseries,,         % MATLAB function arguments purple
+keywordstyle=[3]\color{Blue}\underbar,  % User functions underlined and blue
+commentstyle=\usefont{T1}{pcr}{m}{sl}\color{dartmouthgreen}\small,
+stringstyle=\color{Purple}, % Strings are purple
+showstringspaces=false,%without this there will be a symbol in the places where there is a space
+%%% Put standard MATLAB functions not included in the default
+%%% language here
+morekeywords={alpha,
+array2table,
+case,
+contour,
+factorial,
+fillmissing,
+ismissing,
+movevars,
+normalize,
+normpdf,
+normcdf,
+otherwise,
+poissrnd,
+randi,
+readtable,
+rmmissing,
+rng,
+scatter,
+smoothdata,
+sortrows,
+standarizeMissing,
+switch,
+title,
+var,
+writetable,
+xlim,
+xticks,
+xticklabels,
+xtickangle,
+ylim,
+yticks,
+yticklabels,
+ytickangle,
+warning}
+}
+%%%% END MATLAB 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% C-Terminal %%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstdefinestyle{C-Terminal}{
+language=C,
+basicstyle=\fontfamily{pcr}\selectfont\footnotesize\color{black},
+keywordstyle=\color{darkraspberry}\bfseries, % style for keywords
+upquote=true, %necessary to show apostrophe '
+commentstyle=\color{dartmouthgreen}\ttfamily,
+stringstyle=\color{brown(traditional)}\ttfamily, %procnamestyle=\color{brown(traditional)}\ttfamily
+morecomment=*[l][\special@on\color{dartmouthgreen}\itshape]{//},
+morecomment=*[s][\special@on\color{dartmouthgreen}\itshape]{/*}{*/},
+%morecomment=*[n][\special@on\color{darkpastelblue}]{(0x}{x0)},
+morestring=*[b][\special@on\color{byzantium}]",
+%escapechar=|,%
+deletekeywords={default,
+double,
+for,
+int,
+if},
+otherkeywords={!,!=,~,\$,<, >=,=<,\_t,\_32},
+morekeywords={char,
+const,
+bool,
+extern,
+float,
+int8,
+int16,
+int32,
+long,
+uint,
+uint8,
+uint16,
+uint32,
+uint64,
+unsigned,
+volatile, 
+void},
+escapeinside={(*@}{@*)},
+numbers=left, % where to put the line-numbers
+breaklines=true, %para hacer wrap lines
+numberstyle=\small, % the size of the fonts that are used for the line-numbers     
+backgroundcolor=\color{white},
+tabsize=2,
+showspaces=false, % show spaces adding particular underscores
+showstringspaces=false, % underline spaces within strings
+showtabs=false,
+alsoletter={_,\#,*},
+emph={\#if, \#include, \#define, \#else, \#endif,\#ifdef,\#ifndef},
+emphstyle=\color{darkraspberry},
+emph={[2]
+ timInfo,
+ timer_alarm,
+ timer_autoreload,
+ timer_config,
+ timer_count_dir,
+ timer_group,
+ timer_idx,
+ timer_intr_mode,
+ timer_isr,
+ timer_start,
+ timer_src_clk,
+ gpio_num}, %end emp={[2]
+emphstyle={[2]\color{darkraspberry}},
+literate=  %literates come here
+{./}{{{\color{red}./}}}2 %1ST LITERATE
+{.^}{{{\color{red}.\^{}}}}2 {&&}{{{\color{red}\&\&{}}}}2 %{=}{{{\color{red}=}}}1 %2ND LITERATE {.}{{{\color{debianred}.}}}1 {!}{{{\color{red}!}}}1
+{Ä}{{\"A}}1%
+{Ö}{{\"O}}1%
+{Ü}{{\"U}}1%
+{ä}{{\"a}}1%
+{ö}{{\"o}}1%
+{ü}{{\"u}}1
+{á}{{\'a}}1
+{é}{{\'e}}1
+{í}{{\'i}}1
+{ó}{{\'o}}1
+{ú}{{\'u}}1
+{ñ}{{\~{n}}}1 % ñ = alt + 164
+%{_}{{\_}}1
+{^}{{\^{}}}1
+{~}{{$\sim$}}1
+{orOPER}{{||}}1
+{orEqual}{{|=\,\,\,}}1
+{&=}{{\&=\,\,\,}}1
+%{>}{{$>$\,\,\,}}1
+{<}{{$<$\,\,\,}}1
+{resHochkomma}{{\textbackslash"}}1
+{==}{{$==$\,\,}}1%
+{equal=}{{$=$\,\,}}1%
+{\%}{{\%\,\,}}1%
+{e=}{{$=$\,\,\,}}1
+{ß}{{\ss}}1%
+{ç}{{\c{c}}}1,
+framexrightmargin=5mm, 
+frame=shadowbox, 
+rulesepcolor=\color{bondiblue},
+autogobble=true
+}
+%%%% END C-Terminal  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% C-classic-format %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstdefinestyle{C-classic-format}{
+language=C,
+basicstyle=\fontfamily{pcr}\selectfont\footnotesize\color{black},
+backgroundcolor=\color{white},
+upquote=true, %necessary to show apostroph '
+%identifierstyle=\color{black}\ttfamily,
+commentstyle=\color{dartmouthgreen}\ttfamily,
+stringstyle=\color{brown(traditional)}\ttfamily, %procnamestyle=\color{brown(traditional)}\ttfamily
+%morecomment=[l][\color{brass}]{\#include},
+%morecomment=[l][\color{brass}]{\#define},
+%morecomment=[s][\color{brown(traditional)}]{/´}{´},
+morecomment=*[l][\special@on\color{dartmouthgreen}\itshape]{//},
+morecomment=*[s][\special@on\color{dartmouthgreen}\itshape]{/*}{*/},
+morecomment=*[s][\special@on\color{darkraspberry}\ttfamily]{<}{>},
+%morecomment=*[l][\special@on\color{black}\ttfamily]{ifndef},
+%morecomment=*[n][\special@on\color{darkpastelblue}]{(0x}{x0)},
+morestring=*[b][\special@on\color{byzantium}\bfseries]",
+otherkeywords={!,!=,~,\$, >=,=<,\_t,\_32},
+%escapechar=|,
+%classoffset permite poner más de un color
+%primero se carga el classoffset = 0, luego el classoffset = 1 y asi sucesivamente...
+classoffset=0, keywordstyle=\color{darkraspberry}\bfseries, % style for keywords - SET 1
+deletekeywords={ % DELETED KEYWORDS IN ORDER TO CHANGE THEM TO BLUE
+bool, 
+calloc,
+const,
+continue,
+char,
+double,
+else, enum,
+extern,
+for,
+float,
+if,
+long,
+in,
+int,
+NULL,
+pdTRUE,
+return,
+string,
+short,
+sizeof,
+static, struct,
+then,
+typedef,
+union, unsigned,
+void, volatile,
+while,
+do  %%%%%  HERE DOORS DELETED Keywords
+},  %%%%%%%%%%%%%%% END DELETED KEYWORDS
+classoffset=1, %%%%%%%%%%%%% HERE COLOR IN DARKRASPBERRY
+keywordstyle=\color{darkraspberry}\bfseries,
+morekeywords={
+int8,
+int16,
+int32,
+List,
+pdFALSE,
+pdPASS,
+pdTRUE,
+BaseType,
+Queue,
+QueuePointers,
+signed,
+SemaphoreData,
+TaskHandle,
+TaskFunction,
+TickType,
+TimerHandle,
+UBaseType,
+uint,
+uint8,
+uint16,
+uint32,
+uint64,
+xQUEUE}, %%%%%%%%% END KEYWORDS - SET 1  
+classoffset=2, %%%%%%%%%%%%% HERE DOORS KEYWORDS
+keywordstyle=\color{darkraspberry}\bfseries,
+morekeywords={
+AttrDef,
+AttrTyp,
+Baseline,
+Column,
+DxlObject,
+Date,
+ExternalLink,
+Folder,
+Filter,
+History,
+Item,
+Link,
+LinkRef,
+Module,
+ModuleVersion,
+ModName_,
+Skip,
+Object,
+Project,
+View,
+Sort,
+real}, %%%%%%%%% END KEYWORDS - SET 1  
+classoffset=5, %%%%%%%%%%%%%%% HERE KEYWORDS IN BLUE ! 
+keywordstyle=\color{blue}\bfseries, %%%%% style for keywords - SET 2
+morekeywords={
+bool,
+calloc,
+char,
+const,
+continue,
+double,
+else, enum,
+extern,
+for,
+float,
+if,
+in,
+int,
+long,
+NULL,
+return,
+short,
+string,
+sizeof,
+static, struct,
+then,
+typedef,
+union, unsigned,
+void, volatile,
+while,
+do   %% here new blue doors keywords
+},   %%%%%%%%% END KEYWORDS - SET 2 
+classoffset=0, %%% Finally return to normal color.
+escapeinside={(*@}{@*)},
+numbers=left, % where to put the line-numbers
+breaklines=true, %para hacer wrap lines
+numberstyle=\small, % the size of the fonts that are used for the line-numbers     
+tabsize=2,
+showspaces=false, % show spaces adding particular underscores
+showstringspaces=false, % underline spaces within strings
+showtabs=false,
+alsoletter={_,\#,*},
+emph={\#if, \#include, \#define, \#else, \#endif,\#ifdef,\#ifndef},
+emphstyle=\color{darkraspberry},
+emph={[2]
+ timInfo,
+ timer_alarm,
+ timer_autoreload,
+ timer_config,
+ timer_count_dir,
+ timer_group,
+ timer_idx,
+ timer_intr_mode,
+ timer_isr,
+ timer_start,
+ timer_src_clk,
+ gpio_num}, %end emp={[2]
+emphstyle={[2]\color{darkraspberry}},
+emph={[3]
+    U8, U16, U32, U64,
+    S8, S16, S32, S64,
+    BOOLEAN,
+    BITFIELD,
+    DB_IBC_IN_OBJECT,
+    DB_IBC_IN_WHL_OBJECT,
+    DB_PROCESSING_TYPE,
+    DOUBLE,
+    FLOAT,
+    SIZE_T,
+    Os_SchedulerConfigType,
+    IB_IN_VEHICLE_OBJECT,
+    IB_VEHICLE_OBJECT,
+    IB_VEHICLE_OBJECT_TAG,
+    IB_WHEEL_OBJECT,
+    T1POLESTATESCANONIC,
+    T1POLESTATESDIRECT},
+emphstyle={[3]\color{darkgreen}},
+literate=  %literates come here
+{./}{{{\color{red}./}}}2 %1ST LITERATE
+{.^}{{{\color{red}.\^{}}}}2 {&&}{{{\color{red}\&\&{}}}}2 %{=}{{{\color{red}=}}}1 %2ND LITERATE {.}{{{\color{debianred}.}}}1 {!}{{{\color{red}!}}}1
+{Ä}{{\"A}}1%
+{Ö}{{\"O}}1%
+{Ü}{{\"U}}1%
+{ä}{{\"a}}1%
+{ö}{{\"o}}1%
+{ü}{{\"u}}1
+{á}{{\'a}}1
+{é}{{\'e}}1
+{í}{{\'i}}1
+{ó}{{\'o}}1
+{ú}{{\'u}}1
+{ñ}{{\~{n}}}1 % ñ = alt + 164
+%{_}{{\_}}1
+{^}{{\^{}}}1
+{~}{{$\sim$}}1
+{orOPER}{{||}}1
+{orEqual}{{|=\,\,\,}}1
+{&=}{{\&=\,\,\,}}1
+%{>}{{$>$\,\,\,}}1
+%{<}{{$<$\,\,\,}}1
+{resHochkomma}{{\textbackslash"}}1
+{==}{{$==$\,\,}}1%
+{equal=}{{$=$\,\,}}1%
+{\%}{{\%\,\,}}1%
+{e=}{{$=$\,\,\,}}1
+{ß}{{\ss}}1%
+{ç}{{\c{c}}}1,
+framexrightmargin=5mm, 
+frame=shadowbox, 
+rulesepcolor=\color{bondiblue},
+autogobble=true
+}
+%
+
+%%%% END C-classic-format 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Cpp-classic-format %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstdefinestyle{Cpp-classic-format}{
+language=C++,
+basicstyle=\fontfamily{pcr}\selectfont\footnotesize\color{black},
+backgroundcolor=\color{white},
+upquote=true, %necessary to show apostroph '
+%identifierstyle=\color{black}\ttfamily,
+commentstyle=\color{dartmouthgreen}\ttfamily,
+stringstyle=\color{brown(traditional)}\ttfamily, %procnamestyle=\color{brown(traditional)}\ttfamily
+%morecomment=[l][\color{brass}]{\#include},
+%morecomment=[l][\color{brass}]{\#define},
+%morecomment=[s][\color{brown(traditional)}]{/´}{´},
+morecomment=*[l][\special@on\color{dartmouthgreen}\itshape]{//},
+morecomment=*[s][\special@on\color{dartmouthgreen}\itshape]{/*}{*/},
+morecomment=*[s][\special@on\color{darkraspberry}\ttfamily]{<}{>},
+%morecomment=*[l][\special@on\color{black}\ttfamily]{ifndef},
+%morecomment=*[n][\special@on\color{darkpastelblue}]{(0x}{x0)},
+morestring=*[b][\special@on\color{byzantium}\bfseries]",
+otherkeywords={!,!=,~,\$, >=,=<,\_t,\_32,::},
+%escapechar=|,
+%classoffset permite poner más de un color
+%primero se carga el classoffset = 0, luego el classoffset = 1 y asi sucesivamente...
+classoffset=0, keywordstyle=\color{darkraspberry}\bfseries, % style for keywords - SET 1
+deletekeywords={ % DELETED KEYWORDS IN ORDER TO CHANGE THEM TO BLUE
+auto,
+bool,
+case,
+calloc,
+const,
+continue,
+char,
+double,
+else, enum,
+extern,
+for,
+float,
+if,
+in, int,
+long,
+namespace,
+new,
+NULL,
+return,
+string,
+short,
+sizeof,
+size,
+\_t,
+size_t,
+static, struct,
+switch,
+std,
+then,
+typedef,
+using,
+union, unsigned,
+void, volatile,
+while,
+do  %%%%%  HERE DOORS DELETED Keywords
+},  %%%%%%%%%%%%%%% END DELETED KEYWORDS
+classoffset=1, %%%%%%%%%%%%% HERE COLOR IN DARKRASPBERRY
+keywordstyle=\color{darkraspberry}\bfseries,
+morekeywords={
+array,
+int8,
+int16,
+int32,
+List
+pdFALSE,
+pdPASS,
+pdTRUE,
+BaseType,
+Queue,
+QueuePointers,
+signed,
+SemaphoreData,
+TaskHandle,
+TaskFunction,
+TickType,
+TimerHandle,
+UBaseType,
+uint,
+uint8,
+uint16,
+uint32,
+uint64,
+xQUEUE}, %%%%%%%%% END KEYWORDS - SET 1  
+classoffset=2, %%%%%%%%%%%%% HERE C++ 14 KEYWORDS
+keywordstyle=\color{darkraspberry}\bfseries,
+morekeywords={
+% add here if needed
+}, %%%%%%%%% END KEYWORDS - SET 1  
+classoffset=5, %%%%%%%%%%%%%%% HERE ADD PREVIOUS DELETED KEYWORDS IN BLUE ! 
+keywordstyle=\color{blue}\bfseries, %%%%% style for keywords - SET 2
+morekeywords={
+auto,
+bool,
+case,
+calloc,
+char,
+const,
+continue,
+double,
+else, enum,
+extern,
+for,
+float,
+if,
+in,
+int,
+long,
+namespace,
+nanoseconds,
+new,
+NULL,
+return,
+short,
+string,
+size,
+\_t,
+size_t,
+std,
+sizeof,
+static, struct,
+switch,
+then,
+typedef,
+using,
+union, unsigned,
+void, volatile,
+while,
+do   %% here new blue cpp keywords
+},   %%%%%%%%% END KEYWORDS - SET 2 
+classoffset=5, %%%%%%%%%%%%%%% HERE NEW KEYWORDS  C++ IN BLUE ! 
+keywordstyle=\color{blue}\bfseries, %%%%% style for keywords - SET 3
+morekeywords={
+chrono,   
+make_unique,
+nanoseconds,
+ostringstream,
+unique_ptr,
+vector,%% here new blue cpp keywords
+},   %%%%%%%%% END KEYWORDS - SET 3 
+classoffset=0, %%% Finally return to normal color.
+escapeinside={(*@}{@*)},
+numbers=left, % where to put the line-numbers
+breaklines=true, %para hacer wrap lines
+numberstyle=\small, % the size of the fonts that are used for the line-numbers     
+tabsize=2,
+showspaces=false, % show spaces adding particular underscores
+showstringspaces=false, % underline spaces within strings
+showtabs=false,
+alsoletter={_,.,<,\#,*},
+emph={\#if, \#include, \#define, \#else, \#endif,\#ifdef,\#ifndef},
+emphstyle=\color{darkraspberry},
+emph={[2]
+ timInfo,
+ timer_alarm,
+ timer_autoreload,
+ timer_config,
+ timer_count_dir,
+ timer_group,
+ timer_idx,
+ timer_intr_mode,
+ timer_isr,
+ timer_start,
+ timer_src_clk,
+ gpio_num}, %end emp={[2]
+emphstyle={[2]\color{darkraspberry}},
+emph={[3]
+    U8, U16, U32, U64,
+    S8, S16, S32, S64,
+    BOOLEAN,
+    BITFIELD,
+    DB_IBC_IN_OBJECT,
+    DB_IBC_IN_WHL_OBJECT,
+    DB_PROCESSING_TYPE,
+    DOUBLE,
+    FLOAT,
+    SIZE_T,
+    Os_SchedulerConfigType,
+    IB_IN_VEHICLE_OBJECT,
+    IB_VEHICLE_OBJECT,
+    IB_VEHICLE_OBJECT_TAG,
+    IB_WHEEL_OBJECT,
+    T1POLESTATESCANONIC,
+    T1POLESTATESDIRECT},
+emphstyle={[3]\color{darkgreen}},
+literate=  %literates come here
+{./}{{{\color{red}./}}}2 %1ST LITERATE
+{.^}{{{\color{red}.\^{}}}}2 {&&}{{{\color{red}\&\&{}}}}2 %{=}{{{\color{red}=}}}1 %2ND LITERATE {.}{{{\color{debianred}.}}}1 {!}{{{\color{red}!}}}1
+{Ä}{{\"A}}1%
+{Ö}{{\"O}}1%
+{Ü}{{\"U}}1%
+{ä}{{\"a}}1%
+{ö}{{\"o}}1%
+{ü}{{\"u}}1
+{á}{{\'a}}1
+{é}{{\'e}}1
+{í}{{\'i}}1
+{ó}{{\'o}}1
+{ú}{{\'u}}1
+{ñ}{{\~{n}}}1 % ñ = alt + 164
+%{_}{{\_}}1
+{^}{{\^{}}}1
+{~}{{$\sim$}}1
+{orOPER}{{||}}1
+{orEqual}{{|=\,\,\,}}1
+{&=}{{\&=\,\,\,}}1
+%{>}{{$>$\,\,\,}}1
+%{<}{{$<$\,\,\,}}1
+{resHochkomma}{{\textbackslash"}}1
+{==}{{$==$\,\,}}1%
+{equal=}{{$=$\,\,}}1%
+{\%}{{\%\,\,}}1%
+{e=}{{$=$\,\,\,}}1
+{ß}{{\ss}}1%
+{ç}{{\c{c}}}1,
+framexrightmargin=5mm, 
+frame=shadowbox, 
+rulesepcolor=\color{bondiblue},
+autogobble=true
+}
+
+%%%% END Cpp-classic-format
+
+%Zebra option
+\newcommand\realnumberstyle[1]{}
+
+\makeatletter
+\newcommand{\zebra}[3]{%
+    {\realnumberstyle{#3}}%
+    \begingroup
+    \lst@basicstyle
+    \ifodd\value{lstnumber}%
+        \color{#1}%
+    \else
+        \color{#2}%
+    \fi
+        \rlap{\hspace*{\lst@numbersep}%
+        \color@block{\linewidth}{\ht\strutbox}{\dp\strutbox}%
+        }%
+    \endgroup
+}
+\makeatother
+
+
+
+
+
+%BEGIN ENVIRONMENTS
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                             ┌──── Nr Arguments
+%                             │  ┌── if 1st argument was not give then 
+%                             │  │   is treated as empty
+\lstnewenvironment{CPPCode}[1][]{
+    \lstset{ style=Cpp-classic-format,
+             frame=tlrb,
+             numbers=none,
+             mathescape=true,
+             escapechar=¿,
+             columns=flexible,
+             caption=#1,    % Argument #1
+             captionpos=b   % caption position
+           }
+}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%escape string: escapeinside={(*@}{@*)},
+\lstnewenvironment{CCode}{
+    \lstset{ style=C-classic-format }
+}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                             ┌──── Nr Arguments
+%                             |  ┌── if 1st argument was not give then 
+%                             |  |   is treated as empty
+\lstnewenvironment{DOORSCode}[1][]{
+    \lstset{ style=C-classic-format,
+             frame=tlrb,
+             numbers=none,
+             mathescape=true,
+             escapechar=¿,
+             columns=flexible,
+             caption=#1,    % Argument #1
+             captionpos=b   % caption position
+           }
+}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                             ┌──── Nr Arguments
+%                             |  ┌── if 1st argument was not give then 
+%                             |  |   is treated as 1
+\lstnewenvironment{DOORSCodeTypB}[1][1]{
+    \lstset{ style=C-classic-format,
+             frame=tlrb,
+             numbers=left,
+             firstnumber=#1,    % Argument #1
+             mathescape=true,
+             escapechar=¿,
+             columns=flexible
+           }
+}{}
+
+\lstnewenvironment{RTCode}{
+    \lstset{ style=C-classic-format,
+             frame=tlrb,
+             numbers=none,
+             mathescape=true,
+             escapechar=¿,
+             columns=flexible 
+           }
+}{}
+
+\lstnewenvironment{RTCodeTypB}[1][1]{
+    \lstset{ style=C-classic-format,
+             frame=tlrb,
+             numbers=left,
+             mathescape=true,
+             firstnumber=#1,
+             escapechar=¿,
+             columns=flexible 
+           }
+}{}
+
+\lstnewenvironment{Terminal}{
+    \lstset{ style=C-Terminal,
+             frame=tlrb,
+             numbers=none,
+             mathescape=true,
+             escapechar=¿,
+             columns=flexible 
+           }
+}{}
+
+\lstnewenvironment{MatlabCode}{
+    \lstset{ style=Matlab-Classic }
+}{}
+
+\lstnewenvironment{MatlabCodeTypA}{
+    \lstset{style=Matlab-Classic,frame=tlrb,numbers=none,mathescape=true,escapechar=¿,columns=flexible}
+}{}
+
+\lstnewenvironment{MatlabCodeTypOneLine}{
+    \lstset{style=Matlab-Classic,frame=tlrb,numbers=none,mathescape=true,escapechar=¿,columns=flexible}
+}{}
+%END ENVIRONMENTS
+
+%to Write a single line
+\newcommand{\codeLine}{\begingroup \catcode`_=12 \cmdint}
+    \newcommand{\cmdint}[1]{\texttt{\scantokens{#1\noexpand}}%
+                \endgroup}
+
+
+% NEW FUNCTIONS FOR MATLAB /SIMULINK
+\newcommand{\matlabfcn}[1]{\colorbox{grayMatlab}{\texttt{#1}}}
+\newcommand{\matlabvar}[1]{\texttt{#1}}
+\newcommand{\matlabvalue}[1]{\texttt{#1}}
+\newcommand{\matlabvarAttribute}[1]{\texttt{#1}}
+\newcommand{\matlabpar}[1]{\texttt{#1}}
+\newcommand{\matlabOperator}[1]{\texttt{#1}}
+\newcommand{\matlabDataType}[1]{\texttt{#1}}
+\newcommand{\matlabKeyword}[1]{{\color{Blue}\texttt{#1}}}
+
+\newcommand{\simulinkBlock}[1]{{\color{Black}\texttt{#1}}}
+
+% NEW FUNCTIONS FOR CPP
+\newcommand{\CppKeywordCommon}[1]{{\color{blue(ryb)}\texttt{#1}}}
+
+% NEW FUNCTIONS FOR DOORS DXL
+\newcommand{\dxlMethod}[1]{{\texttt{#1}}}
+\newcommand{\dxlKeywordCommon}[1]{{\color{blue(ryb)}\texttt{#1}}}
+\newcommand{\dxlKeywordSpecial}[1]{{\color{darkraspberry}\texttt{#1}}}
+\newcommand{\dxlString}[1]{{\color{brown(traditional)}\texttt{"#1"}}}
+\newcommand{\dxlStringDeclAssig}[2]{\texttt{#1}\,$=$\,{\color{brown(traditional)}\texttt{"#2"}}}
+\newcommand{\dxlStringDeclAssign}[2]{\codeLine{#1}\,$=$\,{\color{brown(traditional)}\texttt{"#2"}}}
+\newcommand{\dxlDeclAssign}[2]{\codeLine{#1}\,$=$\,\texttt{"#2"}}
+\newcommand{\dxlDeclAssignMethod}[2]{\codeLine{#1}\,$=$\,\codeLine{#2}}
+\newcommand{\dxlObjectAssign}[3]{\codeLine{#1}$\rightarrow${\color{brown(traditional)}\texttt{"#2"}}  \,$=$\,{\color{brown(traditional)}\texttt{"#3"}}}
+\newcommand{\dxlObjectAssignCode}[3]{\codeLine{#1}$\rightarrow${\color{brown(traditional)}\texttt{"#2"}}  \,$=$\,{\codeLine{#3}}}
+
+
+%COMMENT TEXT
+\newcommand{\codecomment}[1]{\color{dartmouthgreen}{\ttfamily{#1}}}
+\newcommand{\codeOper}[1]{\color{blue}{\texttt{#1}}}
+%NEW LINE (code green plus) 
+\newcommand{\cgp}{\color{dartmouthgreen}{\texttt{+}}}
+%DELETED LINE (code red minus) 
+\newcommand{\crm}{\color{debianred}{\texttt{-}}}
+
+
+
+%interesting url
+% -Customizing a code listing environment: https://latex.org/forum/viewtopic.php?t=102
+
+%if you are looking for definitions like
+% \MPWxSMALLxLISTING{0.6} 
+% refer to: styleDefsConstants.tex 

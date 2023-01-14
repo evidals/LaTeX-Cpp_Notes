@@ -25,18 +25,18 @@ C++ has 3 kind of control statements:(i) selection statementes, (ii) iteration s
 \end{minipage}
 \begin{minipage}{.25\textwidth}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Begin code
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+\begin{CPPCode}
 if (cond_1)
 {
-    //do smth
+    //¿\codecomment{do smth}¿
 }
 else
 {
-    //do smth else
-    //else situation is not
-    //shown in UML diagram
+    //¿\codecomment{do smth else}¿
+    //¿\codecomment{else situation is not}¿
+    //¿\codecomment{shown in UML diagram}¿
 }
-\end{lstlisting}
+\end{CPPCode}
 %%%%%%%%%%%%%%%%%%End Code
 \end{minipage}
 \vspace{0.5cm}
@@ -56,26 +56,26 @@ else
 \end{minipage}
 \begin{minipage}{.25\textwidth}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Begin code
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+\begin{CPPCode}
 //example
 int grade{100};
 switch (grade/10)
 {
     case 9:
     case 10:
-        //do smt-1
+        //¿\codecomment{do smt-1}¿
         break;
     
     case 8:
-        //do smt-2
+        //¿\codecomment{do smt-2}¿
         break;
         
     case 7:
     default:
-        //do-def
+        //¿\codecomment{do-default}¿
         break;
 }
-\end{lstlisting}
+\end{CPPCode}
 %%%%%%%%%%%%%%%%%%End Code
 \end{minipage}
 \vspace{0.5cm}
@@ -97,12 +97,12 @@ switch (grade/10)
 \end{minipage}
 \begin{minipage}{.25\textwidth}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Begin code
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+\begin{CPPCode}
 while (cond_1)
 {
-    //do smth
+    //¿\codecomment{do smth}¿
 }
-\end{lstlisting}
+\end{CPPCode}
 %%%%%%%%%%%%%%%%%%End Code
 \end{minipage}
 \vspace{0.5cm}
@@ -121,11 +121,14 @@ while (cond_1)
 \end{minipage}
 \begin{minipage}{.415\textwidth}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Begin code
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
-//examples
-for (unsigned int i{10}; i %\texttt{>=}% 1; i--) {...}
-for (unsigned int i{20}; i %\texttt{>=}% 2; i -= 2) {...}
-\end{lstlisting}
+\begin{CPPCode}
+//example-01
+for (unsigned int i{10}; i ¿\texttt{>=}¿ 1; i--) 
+{...}
+//example-02
+for (unsigned int i{20}; i ¿\texttt{>=}¿ 2; i -= 2) 
+{...}
+\end{CPPCode}
 %%%%%%%%%%%%%%%%%%End Code
 \end{minipage}
 \vspace{0.5cm}
@@ -144,20 +147,23 @@ for (unsigned int i{20}; i %\texttt{>=}% 2; i -= 2) {...}
 \end{minipage}
 \begin{minipage}{.25\textwidth}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Begin code
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+\begin{CPPCode}
 //example:
 unsigned int counter{1}
 do
 {
-    //do smt
+    //¿\codecomment{do smt}¿
     ++counter;
 } while (counter <= 10)
-\end{lstlisting}
+\end{CPPCode}
 %%%%%%%%%%%%%%%%%%End Code
 \end{minipage}
 \vspace{0.5cm}
 %end minipages
 
+
+%code comment:
+% ¿\codecomment{
 % no numbers listing
 % \begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
 

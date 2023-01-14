@@ -1,0 +1,41 @@
+% Math commands
+% usDef = user Defined
+\makeatletter
+\newtheoremstyle{myplain}%
+{\item[\hskip\labelsep \theorem@headerfont ##1\ \textup{\bfseries(##2)}\ \,\theorem@separator]}%
+{\item[\hskip\labelsep \theorem@headerfont ##1\ \textup{\bfseries(##2)}\ (##3)\,\theorem@separator]}
+\makeatother
+\theoremstyle{myplain}
+\theoremheaderfont{\itshape}
+\theorembodyfont{\itshape}
+\theoremseparator{\textemdash}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{satz}{Satz}[section]
+\newcommand{\vspaceBemerkung}{\vspace{0.2cm}}
+\newcommand{\entspricht}{{\,\hat{=}\,}}
+\renewcommand{\qed}{\hfill\blacksquare}
+\newcommand{\qedwhite}{\hfill \ensuremath{\Box}}
+\newcommand{\mbb}[1]{\mathbb{R}^{#1}}
+\newcommand{\mbbb}[2]{\mathbb{R}^{#1\times{#2}}}
+\newcommand*\conj[1]{\bar{#1}}
+\newcommand*\mean[1]{\bar{#1}}
+\newcommand\widebar[1]{\mathop{\overline{#1}}} 
+
+\DeclareMathOperator{\Lagr}{\mathcal{L}}
+\DeclareMathOperator{\Lapl}{\mathcal{L}}
+
+%new command for apostrophe
+\newcommand*\apostrophe{\textsc{\char13}}
+
+%in order to draw a text enclosed in a circle
+\newcommand{\mymk}[1]{%
+  \tikz \node[anchor=south west, draw,circle, inner sep=0pt, minimum size=5.5mm,
+    text height=2mm]{\ensuremath{#1}} ;}
+% nodes without circle
+\newcommand{\mymku}[1]{%
+  \tikz \node[anchor=south west, circle, inner sep=0pt, minimum size=7mm,
+    text height=2mm]{\ensuremath{#1}} ;}
+
+
+\counterwithin{equation}{definition}
+\counterwithin{equation}{satz}

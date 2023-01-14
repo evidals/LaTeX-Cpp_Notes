@@ -6,11 +6,9 @@ Example of using header (\texttt{.h}) and and the \texttt{.cpp} file\\
 \end{itemize}
 
 \subsection{Header \texttt{.h}}
-\begin{minipage}{.5\textwidth}
-\end{minipage}\hspace{0.0cm}
-\begin{minipage}{.8\textwidth}
-\vspace{0.1cm}
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
 #include <string.h>
 
 //prevent multiple inclussion of header
@@ -26,22 +24,20 @@ private:
     unsigned int moth;
     unsigned int day;
     unsigned int year;
-}; //do not forget the semicolon
+}; //¿$\leftarrow$ \codecomment{do not}¿ forget the semicolon
 
 #endif
-\end{lstlisting}
+\end{CPPCode}
 \end{minipage}
 
 \subsection{\texttt{.cpp}}
-\begin{minipage}{.5\textwidth}
-\end{minipage}\hspace{0.0cm}
-\begin{minipage}{.8\textwidth}
-\vspace{0.1cm}
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+#include <¿s¿tring> // ¿\codecomment{for ostringstream class}¿
 #include <sstream>
-#include <string>
-#include <Date.h> //INCLUDE DEFINITION OF THE HEADER!
-usingnamespace std;
+#include <Date.h>   //INCLUDE DEFINITION OF THE HEADER!
+using namespace std;
 
 //Date constructor (should do range checking)
 Date::Date(unsigned int m, unsigned d unsigned int y)
@@ -50,43 +46,42 @@ Date::Date(unsigned int m, unsigned d unsigned int y)
 //print Date in the format mm/dd/yyyy
 string Date::toString() const {
     ostringstream output;
-    output <<%\,% month <<%\,% '/' <<%\,% day <<%\,% '/' <<%\,% year;
+    output ¿<¿¿<¿ month ¿<¿¿<¿ '/' ¿<¿¿<¿ day ¿<¿¿<¿ '/' ¿<¿¿<¿ year;
     return output.str();
 }
 #endif
-\end{lstlisting}
+\end{CPPCode}
 \end{minipage}
 
-
+\newpage
 \subsection{Example}
-\begin{minipage}{.5\textwidth}
-\end{minipage}\hspace{0.0cm}
-\begin{minipage}{.8\textwidth}
-\vspace{0.1cm}
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
 #include <iostream>
-#include "Date.h" // include definition of class Date from Date.h
+#include "Date.h" // include definition of ¿\codecomment{class}¿ Date from Date.h
 using namespace std;
 
-int main(){
+int main()
+{
     Date date1{7, 4, 2004};
     Date date2; // date2 defaults to 1/1/2000
     
-    cout << "date1 = " << date1.toString() << "\ndate2 = " << date2.toString() << "\n\n";
+    cout ¿<¿¿<¿ "date1 = " ¿<¿¿<¿ date1.toString() ¿<¿¿<¿ "\ndate2 = " ¿<¿¿<¿ date2.toString() ¿<¿¿<¿ "\n\n";
     
-    cout << "After default memberwise assignment, date2 = " << date2.toString() << endl;
+    cout ¿<¿¿<¿ "After default memberwise assignment, date2 = " ¿<¿¿<¿ date2.toString() ¿<¿¿<¿ endl;
 }
-\end{lstlisting}
-\end{minipage}
+\end{CPPCode}
+\end{minipage}\\
 
-\begin{minipage}{.5\textwidth}
-\end{minipage}\hspace{0.0cm}
-\begin{minipage}{.8\textwidth}
+\noindent{}
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
 Output:\\
 \vspace{-0.5cm}
-\begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
+\begin{Terminal}
 date1 = 7/4/2004
 date2 = 1/1/2000
 After default memberwise assignment, date2 = 7/4/2004
-\end{lstlisting}
+\end{Terminal}
 \end{minipage}

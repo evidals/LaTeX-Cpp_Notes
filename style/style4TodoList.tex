@@ -1,0 +1,73 @@
+%Paquete para hacer anotaciones
+\usepackage{todonotes} %Paquete para hacer anotaciones
+\setlength{\marginparwidth}{3.4cm}
+\reversemarginpar % put the todo in the left side
+\newcounter{todocounter}
+\setuptodonotes{tickmarkheight=0.1cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%          .----------------------> main command: \todoCodigo[]{}, 
+%%%          |                                      \todoContent[]{}, 
+%%%          |                                      \todoMATLAB[]{}
+%%%          |
+%%%          |      .---------------> 1.st Arg. (parametro adicional)
+%%%          |      |        .------> 2.nd Arg. (descripción del TODO)
+%%% E.g.:    |      |        |
+%%%  \todoCodigo[inline]{Update Pin Remarks}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% COMANDOS %%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% COMANDO 01 --------------> CONTENT
+\newcommand{\todoContent}[2][]
+{\stepcounter{todocounter}
+    \todo[
+            color=caribbeangreen, 
+            #1 % 1st arg. extra commands
+         ]
+         {  % estilo: "[ Numeration | Attribute ] Description"
+            [\thetodocounter\,|\,CONTENT] #2
+         } 
+}
+%%%%%% COMANDO 02 -------------> CODE
+\newcommand{\todoCode}[2][]
+{\stepcounter{todocounter}
+    \todo[
+            color=corn, 
+            #1 % 1st arg. extra commands
+         ]
+         {  % estilo: "[ Numeration | Attribute ] Description"
+            [\thetodocounter\,|\,CODE] #2
+         }
+}
+%%%%%% COMANDO 03 -------------> MATLAB
+\newcommand{\todoMATLAB}[2][]
+{\stepcounter{todocounter}
+    \todo[
+            color=orange-amber, 
+            #1
+         ]
+         {
+            [\thetodocounter\,|\,MAT] 
+            #2
+         }
+}
+%%%%%%% PAQUETE EXTRA
+%%%%%%% Necesario para poder poner el todo dentro de un cell en una tabla.
+\usepackage{marginnote}
+\let\marginpar\marginnote %enable todo in table always use \textrm{\todo{Test}}
+
+
+%Constant definitions
+%para listings:
+%\def\SPACExLISTINGxTOxTEXT{0.2}
+%vertical spaces
+\def\VERTICALxSPACExLISTINGxTOxLISTING{-0.2}
+\def\VERTICALxSPACExMINIPAGExTOxLISTING{0.1}
+\def\VERTICALxSPACExTEXTxTOxLISTING{0.1}
+\def\VERTICALxSPACExTEXTxTOxTIKZ{0.3}
+\def\VERTICALxSPACExTIKZxTOxLISTING{0.15}
+\def\VERTICALxSPACExITEMIZExTOxCURVE{-0.30} %usado en pedal travel
+%
+%horizonal spaces
+\def\HORxSPACExLISTINGxTOxTIKZGRAPH{0.50}
+\def\HORxSPACExTIKZGRAPHxTOxLISTING{0.20}
+%
