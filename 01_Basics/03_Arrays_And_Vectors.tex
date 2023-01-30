@@ -3,9 +3,36 @@
 %~\cref{sec:Libraries}
 \subsection{Difference}
 \begin{itemize}
-    \item array - they are fixed-size collections consisting of data items of the same type
-    \item vector - same as array but they can grow and shrink dynamically at execution time. 
+    \item \CppKeywordSpecial{array} - they are fixed-size collections consisting of data items of the same type
+    \item \CppKeywordSpecial{vector} - same as array but they can grow and shrink dynamically at execution time. 
 \end{itemize}
+
+\subsection{Remarks}
+\begin{itemize}
+    \item When speaking about the elements of an array you could say:
+\end{itemize}
+\begin{table}[!h]
+\centering
+\begin{tblr}{
+  row{3} = {c},
+  row{4} = {c},
+  cell{1}{1} = {c=3}{},
+  cell{2}{1} = {c},
+  cell{3}{1} = {r},
+  cell{4}{1} = {r},
+  hlines,
+  vlines,
+}
+Example with an arrray declared as \texttt{arr}&  & \\
+ & Refer to Subscript & Actual element in the array\\
+"sevent element of the array" & \texttt{arr[6]} & 7\\
+"array element 7"             & \texttt{arr[7]} & 8
+\end{tblr}
+\end{table}
+\begin{itemize}
+    \item Remeber \CppKeywordCommon{size\_t} := unsigned integral type. For more info see Section~\ref{subsec:Data-Type-Size-t}
+\end{itemize}
+
 
 \subsection{Array declaration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Array Declaration
@@ -24,7 +51,7 @@ Examples:\\
 \begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
 \vspaceTextToListing % =\vspace{0.1cm}
 \begin{CPPCode}
-array<int, 12> n1; ¿\hspace{3.2cm}¿// ¿\codecomment{n1 is an array of 5 int values}¿
+array<int, 12> n1; ¿\hspace{3.2cm}¿// n1 is an array of 5 int values
 
 array<int, 5> n2{32, 27, 64, 18, 95}; // ¿\codecomment{declaration and init}¿
 
@@ -54,19 +81,27 @@ for (size_t j{0}; j ¿<¿ a.size(); ++j)
 %%%%%%%%%%%%%%%%%%%%%%%% END going through array
 
 \subsection{Array Declaration in range-Based style}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\begin{minipage}{\MPWxXSSxLISTING\textwidth} % = 0.36 times \textwidth
+\vspace{-0.35cm}
 \vspaceTextToListing % =\vspace{0.1cm}
 \begin{CPPCode}
+//Range-based style
 array<int, 5> items{1, 2, 3, 4, 5};
 for (int item : items)
 {
     cout ¿<¿¿<¿ item ¿<¿¿<¿ " ";
 }
-
+\end{CPPCode}
+\end{minipage}
+\hspaceListingToListing
+\begin{minipage}{\MPWxXSxLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
 //Equivalent to:
-for (int counter{0}; counter ¿<¿ items.size(); ++counter) 
+for ( int counter{0}; 
+             counter ¿<¿ items.size(); 
+          ++counter )
 {
     cout ¿<¿¿<¿ items[counter] ¿<¿¿<¿ " ";
 }
@@ -74,24 +109,128 @@ for (int counter{0}; counter ¿<¿ items.size(); ++counter)
 \end{minipage}
 \\
 %%%
-\noindent To modify the elements we can easily write:\\
+\noindent To modify the elements we need the ampersand symbol \texttt{\&}, i.e.:\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
 \vspaceTextToListing % =\vspace{0.1cm}
 \begin{CPPCode}
 for (int& itemRef : items)
 {
-    // ¿\codecomment{do smt modifying the content}¿
-    itemRef *= 2;
+    itemRef *= 2;    // ¿\codecomment{do smt modifying the content}¿
 }
 \end{CPPCode}
 \end{minipage}
 
+\subsection{Multidimensional array}
+\begin{minipage}{\MPWxSMALLxLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+#include <iostream>
+#include <array>
+/* GLOBALS VARIABLES*/
+const size_t rows{2};
+const size_t columns{3};
+
+/* PROTOTYPES */
+void printArray(const array<array<int, columns>, rows>&);
+\end{CPPCode}
+\end{minipage}
+\hspaceListingToListing
+\begin{minipage}{\MPWxXXSxLISTING\textwidth} % = 0.8 times \textwidth
+Note that \CppKeywordCommon{const} is used in the function prototype since we are not changing the values. Meanwhile \CppKeywordCommon{const}\texttt{\&} in the row's declaration indicates that the reference \textbf{cannot} be used to \textbf{modify} the rows and prevents each row from being copied into the range variable.
+\end{minipage}
+\\
+\begin{minipage}{\MPWxSMALLxLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+int main()
+{
+    array<array<int, columns>, rows> array1{1, 2, 3, 4, 5, 6};
+    array<array<int, columns>, rows> array2{1, 2, 3, 4, 5};
+
+    cout ¿<¿¿<¿ "Values ¿in¿ array1 by row are:" ¿<¿¿<¿ endl;
+    printArray(array1);
+
+    cout ¿<¿¿<¿ "\nValues ¿in¿ array2 by row are:" ¿<¿¿<¿ endl;
+    printArray(array2);
+}
+
+void printArray(const array<array<int, columns>, rows>& a)
+{
+    for (auto const& row : a)
+    {
+        for (auto const& element : row)
+        {
+            cout ¿<¿¿<¿ element ¿<¿¿<¿ ' ';            
+        }
+
+        cout ¿<¿¿<¿ endl;
+    }
+}
+\end{CPPCode}
+\end{minipage}
+\hspaceListingToListing
+\begin{minipage}{\MPWxXXSxLISTING\textwidth} % = 0.8 times \textwidth
+\vspace{5cm}
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{Terminal}
+OUTPUT:
+-----------------------------
+Values in array1 by row are:
+1 2 3
+4 5 6
+
+Values in array2 by row are:
+1 2 3
+4 5 0
+\end{Terminal}
+\end{minipage}\\
+As an example, the next Listing present the multidimensional nested counter-controlled statement\\
+\begin{minipage}{\MPWxSMALLxLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+for (size_t row{0}; row ¿<¿ a.size(); ++row)
+{
+    for (size_t column{0}; column ¿<¿ a[row].size(); ++column) 
+    {
+        cout ¿<¿¿<¿ a[row][column] ¿<¿¿<¿ ' ';
+    }
+    
+    cout ¿<¿¿<¿ endl;
+}
+\end{CPPCode}
+\end{minipage}
 
 \subsection{Local Arrays}
 A static local variable in a function definition exists for the program’s duration but is visible only in the function’s body.
-\subsubsection{Static Local Array}
-If a static array is not initialized explicitly by you, each element of that array is initialized to zero by the compiler when the array is created. Recall that C++ does not perform such default initialization for other local variables.
+\subsubsection{\CppKeywordCommon{static} local Array}
+By declaring a local array as \CppKeywordCommon{static}, then it is not created and initialized each time the program calls the function and is not destroyed each time the function terminates. This can improve performance especially when using large arrays~\cite{deitel2017c++}.\\
+
+\noindent If a static array is not initialized explicitly by you, \textbf{each element of that array is initialized to zero by the compiler} when the array is created. Recall that C++ does not perform such default initialization for other local variables.\\
+\noindent
+\begin{minipage}{\MPWxXSxLISTING\textwidth} % = 0.7 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+        \begin{CPPCode}
+const size_t arraySize{3};
+void SomeFunction(void)
+{
+    // Local ¿\codecomment{array}¿
+    array<int, arraySize> arr{1, 2, 3}
+}
+        \end{CPPCode}
+    \end{minipage}
+    \hspaceListingXSToListingXS
+    \begin{minipage}{\MPWxSxLISTING\textwidth} % = 0.7 times \textwidth
+    \vspaceTextToListing
+        \begin{CPPCode}
+const size_t arraySize{3};
+void SomeFunction(void)
+{
+        // Static local ¿\codecomment{array}¿
+    static array<int, arraySize> arrAsStaticLocal
+}
+        \end{CPPCode}
+\end{minipage}
 
 \subsection{Examples}
 

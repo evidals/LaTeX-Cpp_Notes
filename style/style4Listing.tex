@@ -394,8 +394,8 @@ stringstyle=\color{brown(traditional)}\ttfamily, %procnamestyle=\color{brown(tra
 %morecomment=[l][\color{brass}]{\#include},
 %morecomment=[l][\color{brass}]{\#define},
 %morecomment=[s][\color{brown(traditional)}]{/´}{´},
-morecomment=*[l][\special@on\color{dartmouthgreen}\itshape]{//},
-morecomment=*[s][\special@on\color{dartmouthgreen}\itshape]{/*}{*/},
+morecomment=[l][\special@on\color{dartmouthgreen}\itshape]{//},
+morecomment=[s][\special@on\color{dartmouthgreen}\itshape]{/*}{*/},
 morecomment=*[s][\special@on\color{darkraspberry}\ttfamily]{<}{>},
 %morecomment=*[l][\special@on\color{black}\ttfamily]{ifndef},
 %morecomment=*[n][\special@on\color{darkpastelblue}]{(0x}{x0)},
@@ -449,7 +449,7 @@ array,
 int8,
 int16,
 int32,
-List
+List,
 pdFALSE,
 pdPASS,
 pdTRUE,
@@ -482,6 +482,7 @@ bool,
 case,
 calloc,
 char,
+char*,
 const,
 continue,
 double,
@@ -492,6 +493,7 @@ float,
 if,
 in,
 int,
+int*,
 long,
 namespace,
 nanoseconds,
@@ -750,7 +752,10 @@ autogobble=true
 \newcommand{\simulinkBlock}[1]{{\color{Black}\texttt{#1}}}
 
 % NEW FUNCTIONS FOR CPP
+\newcommand{\CppCommonCode}[1]{{\texttt{#1}}}
+\newcommand{\Cppfcn}[1]{\colorbox{grayMatlab}{\texttt{#1}}}
 \newcommand{\CppKeywordCommon}[1]{{\color{blue(ryb)}\texttt{#1}}}
+\newcommand{\CppKeywordSpecial}[1]{{\color{darkraspberry}\texttt{#1}}}
 
 % NEW FUNCTIONS FOR DOORS DXL
 \newcommand{\dxlMethod}[1]{{\texttt{#1}}}
