@@ -232,6 +232,57 @@ void SomeFunction(void)
         \end{CPPCode}
 \end{minipage}
 
+\subsection{Built-In Arrays}
+\label{subsec:Built-In-Arrays}
+%~\cref{subsec:Built-In-Arrays}
+It is a fixed-size data structure. The compiler reserves the appropiate amount of memory. Its declaration goes as follows:
+\codeLine{type arrayName[arraySize]}\\
+where \CppCommonCode{arraySize}$>0$ and must be integer constant.\\
+\begin{minipage}{\MPWxXSxLISTING\textwidth} % = 0.7 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+        \begin{CPPCode}
+//init opt 01
+int n[5]{50, 20, 30, 10, 40}
+        \end{CPPCode}
+    \end{minipage}
+    \hspaceListingXSToListingXS
+    \begin{minipage}{\MPWxSxLISTING\textwidth} % = 0.7 times \textwidth
+    \vspaceTextToListing
+        \begin{CPPCode}
+//init opt 02  - possible but not recommended
+int n[]{50, 20, 30, 10, 40} //arrSize no specified.
+        \end{CPPCode}
+\end{minipage}
+\begin{itemize}
+    \item if you provide fewer initializers than number of elements, the remaining elements are value initialized, i.e.
+    \begin{itemize}
+        \item numeric types to $0$, 
+        \item \CppCommonCode{bool}s to false,
+        \item \textbf{pointers} to \CppCommonCode{nullptr} (Pointers are explained in Section~\ref{sec:Pointers}) and 
+        \item class objects to its default constructor.
+    \end{itemize}
+
+    \item built-in arrays don't know their own size, so a function that processes a built-in array should also have a parameter to receive its size.
+
+    \item The compiler does not distinguish between a function that receives a pointer and a function that receives a built in array. I.e. each time that the compiler finds a built-in array notation it converts to pointer  notation.\\
+    \begin{minipage}{\MPWxXXSxLISTING\textwidth} % = 0.7 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+        \begin{CPPCode}
+// Built-in Array notation
+foo(const int values[])
+        \end{CPPCode}
+    \end{minipage}
+    \hspaceListingXSToListingXS
+    \begin{minipage}{\MPWxXSxLISTING\textwidth} % = 0.7 times \textwidth
+    \vspaceTextToListing
+        \begin{CPPCode}
+// Pointer notation
+foo(const int* values)
+        \end{CPPCode}
+\end{minipage}
+    \item Note that \CppCommonCode{const int* values} is read as "values is a pointer to a integer constant".
+\end{itemize}
+
 \subsection{Examples}
 
 \begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth

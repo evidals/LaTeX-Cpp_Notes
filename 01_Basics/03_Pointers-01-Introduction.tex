@@ -39,7 +39,50 @@ p = &v[3];
 \subsection{The \CppCommonCode{nullptr}}
 \label{subsec:nullptr}
 %~\cref{subsec:nullptr}
+Pointers should be initialized to a \CppCommonCode{nullptr} or to a memory address.\\
+\begin{minipage}{\MPWxXSxLISTING\textwidth} % = 0.36 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+int y{5};   // declare variable
+int* yPtr{nullptr};  // declare ptr var.
+\end{CPPCode}
+\end{minipage}
+\\
 
+\subsection{The address operator \CppCommonCode{\&}}
+\begin{minipage}{\MPWxXSxLISTING\textwidth} % = 0.36 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+yPtr = &y   //assign addres of y to yPtr
+\end{CPPCode}
+\end{minipage}
+\begin{itemize}
+    \item Now the variable \CppVar{yPtr} is said to point to \CppVar{y}.
+    \item Also \CppVar{yPtr} indirectly references variable \CppVar{y}'s value (i.e. 5).
+    \item When using \textquotesingle\CppCommonCode{\&}\textquotesingle{} in expressions like \CppVar{\&y}, it is called \textbf{address operator}.
+\end{itemize}
+
+\subsection{The indirection operator \CppCommonCode{(*)}}
+Formally, \CppCommonCode{(*)} is an unary operator which is commonly referred to as the \textbf{indirection operator} or \textbf{dereferencing operator}. It returns an lvalue represeting the object to which its pointer operand points.\\
+\begin{minipage}{\MPWxXSxLISTING\textwidth} % = 0.36 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+cout ¿<¿¿<¿ *yPtr ¿<¿¿<¿ endl;
+cout ¿<¿¿<¿ y ¿<¿¿<¿ endl;
+*yPtr = 9;                 // (*) used as lvalue
+cout ¿<¿¿<¿ y ¿<¿¿<¿ endl;
+\end{CPPCode}
+\end{minipage}
+\hspaceListingXSToListingXS
+\begin{minipage}{\MPWxXXXSxLISTING\textwidth} % = 0.36 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{Terminal}
+//Output:
+5
+5
+9
+\end{Terminal}
+\end{minipage}
 %%%%%%%%%%%%%%%%%%%%%%%% END going through array
 % no numbers listing
 % \begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
