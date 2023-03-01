@@ -1,0 +1,232 @@
+\section{Classes}
+
+\subsection{Including the class header (*.h) in the source code file (*.cpp)}
+Example of using header (\texttt{.h}) and and the \texttt{.cpp} file\\
+\begin{itemize}
+    \item Inside the header we will define the class declaration.
+    \item Mainwhile in the \texttt{.cpp} we will define the class-member functions.
+\end{itemize}
+
+\subsection{Header \texttt{.h}}
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+#include <string.h>
+
+//prevent multiple inclussion of header
+#ifndef DATE_H
+#define DATE_H
+
+class Date{
+public:
+    explicit Date(unsigned int = 1, unsigned int = 1, unsigned int = 2000)
+    std::string toString() const;
+    
+private:
+    unsigned int moth;
+    unsigned int day;
+    unsigned int year;
+}; //¿$\leftarrow$ \codecomment{do not}¿ forget the semicolon
+
+#endif
+\end{CPPCode}
+\end{minipage}
+
+\subsection{\texttt{.cpp}}
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+#include <¿s¿tring> // ¿\codecomment{for ostringstream class}¿
+#include <sstream>
+#include <Date.h>   //INCLUDE DEFINITION OF THE HEADER!
+using namespace std;
+
+//Date constructor (should do range checking)
+Date::Date(unsigned int m, unsigned d unsigned int y)
+    : month{m}, day{d}, year{y} {}
+    
+//print Date in the format mm/dd/yyyy
+string Date::toString() const {
+    ostringstream output;
+    output ¿<¿¿<¿ month ¿<¿¿<¿ '/' ¿<¿¿<¿ day ¿<¿¿<¿ '/' ¿<¿¿<¿ year;
+    return output.str();
+}
+#endif
+\end{CPPCode}
+\end{minipage}
+
+\newpage
+\subsubsection{Example}
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+#include <iostream>
+#include "Date.h" // include definition of ¿\codecomment{class}¿ Date from Date.h
+using namespace std;
+
+int main()
+{
+    Date date1{7, 4, 2004};
+    Date date2; // date2 defaults to 1/1/2000
+    
+    cout ¿<¿¿<¿ "date1 = " ¿<¿¿<¿ date1.toString() ¿<¿¿<¿ "\ndate2 = " ¿<¿¿<¿ date2.toString() ¿<¿¿<¿ "\n\n";
+    
+    cout ¿<¿¿<¿ "After default memberwise assignment, date2 = " ¿<¿¿<¿ date2.toString() ¿<¿¿<¿ endl;
+}
+\end{CPPCode}
+\end{minipage}\\
+
+\noindent{}
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+Output:\\
+\vspace{-0.5cm}
+\begin{Terminal}
+date1 = 7/4/2004
+date2 = 1/1/2000
+After default memberwise assignment, date2 = 7/4/2004
+\end{Terminal}
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%% SUB SECTION %%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Accessing Class Members}
+What elements belong to tha class's scope?
+\begin{itemize}
+    \item data members
+    \item member functions
+    \item Remark: nommember functions belong to \texttt{global namespace scope} see Chapter XX.
+\end{itemize}
+
+
+% \usepackage{color}
+% \usepackage{tabularray}
+
+\begin{table}[!h]
+\centering
+\begin{tblr}{
+  row{1} = {c},
+  cell{1}{1} = {c=3}{},
+  cell{2}{2} = {c=2}{},
+  cell{3}{1} = {r=3}{},
+  cell{3}{2} = {r=3}{},
+  vline{1,2}   = {1-6}{},
+  vline{3} = {1-5}{},
+  vline{1-3} = {2}{},
+  vline{-} = {3}{},
+  vline{4} = {1-5}{},
+  hline{1-3,6} = {-}{},
+  hline{7} = {1}{},
+  measure = vbox, %needed for itemize
+}
+Class &  & \\
+Within Class´s Scope & Outside Class´s Scope & \\
+{\begin{itemize}
+    \item Class member are inmediately accesible\\by all of its functions.
+    \item Class member are referenced by its name. 
+\end{itemize}}
+ & public   & referenced through\\
+ &  &  \begin{itemize}
+            \item an object name,
+            \item a reference to an object, or
+            \item a pointer to an object
+        \end{itemize} \\
+ &  & {above options are known as\\\textbf{handles on an object.}}\\
+\end{tblr}
+\end{table}
+
+\noindent Lets say we have a class Account then we can write:\\
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+Account     account; ¿\hspace{2.2cm}¿// declaration of object
+Account& accountRef{account}; ¿\hspace{0.17cm}¿// refers to an object type Account
+Account* ptrAccount{&account}; // points to an account object
+\end{CPPCode}
+\end{minipage}\\
+
+\noindent Now supposse Account has a member function called \CppCommonCode{SetBalance}, if we want to invoke it, then\\
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+float someNumber= 123.45;
+account.SetBalance(someNumber); ¿\hspace{0.55cm}¿ // invoke via the object
+accountRef.SetBalance(someNumber);¿\hspace{0.37cm}¿// invoke via a reference to the obj.
+ptrAccount->SetBalance(someNumber); // invoke via a pointer to the object
+\end{CPPCode}
+\end{minipage}\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%% SUB SECTION %%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Overload Constructor}
+To overload a constructor, \textbf{provide} in the class definition \textbf{a prototype for each version of the constructor}, and provide a separate constructor definition for each overloaded version.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%% SUB SECTION %%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Delegating Constructor}
+Suppose we have the following overloaded constructor's prototypes\\
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+Time(); ¿\hspace{2.15cm}¿// default hour, min and sec to 0
+explicit Time(int); ¿\hspace{0.15cm}¿// default min and sec to 0
+Time(int¿¿, int);¿\hspace{0.92cm}¿// default sec to 0
+Time(int¿¿, int¿¿, int);
+\end{CPPCode}
+\end{minipage}\\
+
+\noindent The delegating constructor is a constructor which call to another constructor, i.e.:\\
+\begin{minipage}{\MPWxLARGExLISTING\textwidth} % = 0.8 times \textwidth
+\vspaceTextToListing % =\vspace{0.1cm}
+\begin{CPPCode}
+Time::Time() : Time{0,0,0} {} 
+Time::Time(int hour) : Time{hour,0,0} {}
+Time::Time(int hour, int minute) : Time{hour,minute,0} {}
+Time::Time(int hour, int minute, int second) 
+{
+    setTime(hour, minute, second); // this is just an example.
+}
+\end{CPPCode}
+\end{minipage}\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%% SUB SECTION %%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Destructors}
+Is a special member function. To declare a destructor we have to use the tilde ($\sim$).
+\begin{itemize}
+    \item We know that the tilde operator is the bitwise complement operator, and, in a sense, the destructor is the complement of the constructor.
+\end{itemize}
+
+\subsubsection{Con- and Destructor for Objects in Global Scope}
+\begin{itemize}
+    \item Constructors are called for the objects defined in G.S. \underline{before} any other function in that program
+    \item Constructors are called even before \texttt{main()}.
+    \item Destructors are called when \texttt{main()} terminates.
+    \item If \CppCommonCode{exit} or \CppCommonCode{abort} is performed then Destructors are \underline{not} called.
+\end{itemize}
+
+\subsubsection{Con- and Destructor for (Non-static) local objects}
+\begin{itemize}
+    \item Constructors are called when execution reaches the point where that object is defined.
+    \item Destructors are called when execution leaves the object's scope.
+    \item I.e. constructor and destructor are called when the object execution enters and leaves the object's scope.
+    \item If \CppCommonCode{exit} or \CppCommonCode{abort} is performed then Destructors are \underline{not} called.
+\end{itemize}
+
+\subsubsection{Con- and Destructor for static local objects}
+\begin{itemize}
+    \item Constructors is called only once, when execution first reaches the point where the object is defined.
+    \item Destructors are called when \texttt{main()} terminates or \CppCommonCode{exit} is called.
+    \item If \CppCommonCode{abort} is performed then destructors are \underline{not} called.
+    \item Global and static objects are destroyed in the reverse order of their creation
+\end{itemize}
+
+%\begin{itemize}
+%            \item an object name,
+%            \item a reference to an object, or
+%            \item a pointer to an object
+%        \end{itemize}

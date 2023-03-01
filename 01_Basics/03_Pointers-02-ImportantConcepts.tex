@@ -61,19 +61,269 @@ squareByPtrRef(int* nPtr)
     \end{minipage}
 \end{itemize}
 
-\noindent Passing a variable by reference with a pointer \textbf{does not actually pass anything by reference} a pointer to that variable is passed by value and is copied into the function’s corresponding pointer parameter. The called function can then access that variable in the caller simply by \textbf{dereferencing} the pointer, thus accomplishing pass-by-reference.
+\noindent Passing a \textbf{variable} by reference with a pointer \textbf{does not actually pass anything by reference} a pointer to that variable is passed by value and is copied into the function’s corresponding pointer parameter. The called function can then access that variable in the caller simply by \textbf{dereferencing} the pointer, thus accomplishing pass-by-reference.\\
+
+\noindent \textbf{Remark}. When a pointer to an object is passed, only a copy of the address of the object must be made, the object itself is not copied.
 
 \subsection{\CppCommonCode{const} with Pointers}
 \label{subsec:Pointers-02-ImportantConcepts-02-const-with-Pointers}
 %~\cref{subsec:Pointers-02-ImportantConcepts-02-const-with-Pointers}
+
+%% Counters
+\newcounter{ctrPassPtrToFcn} % a <- ch00-Important row counter
+\stepcounter{ctrPassPtrToFcn}
+
 Keyword \CppCommonCode{const} enables you to inform the compiler that the value of a particular variable should \textbf{not} be modified. This is usefull when using built-in arrays (See Section~\cref{subsec:Built-In-Arrays}) as they are passed by reference and could easily be changed in the called funcion. An attempt to modify a const value is a compilation error.
 
+\subsection{Passing a pointer to a function}
+\label{subsec:Pointers-02-ImportantConcepts-03-Pass-Pointer-to-fcn}
+%~\cref{subsec:Pointers-02-ImportantConcepts-03-Pass-Pointer-to-fcn}
+There are four ways to a pass a pointer to a function:
+\begin{table}[!h]
+	\centering                       % Center your table
+	\begin{tblr}{vspan=default,
+                     colspec={Q[r,m]|Q[c,m]|Q[l,m]|Q[l,m]|},
+                     column{3}={4.0cm}}     % set length 
+    \SetHline{2-4}{black}
+    & Way & Ptr is constant ? & Data is constant? \\
+    \SetHline{2-4}{black}
+    & \arabic{ctrPassPtrToFcn}                             & a \textbf{non}constant pointer & to \textbf{non}constant data \\
+    \SetHline{2-4}{black}   %E
+    & \stepcounter{ctrPassPtrToFcn}\arabic{ctrPassPtrToFcn} & a \textbf{non}constant pointer & to \hspace{0.65cm}constant data \\
+    \SetHline{2-4}{black}
+    & \stepcounter{ctrPassPtrToFcn}\arabic{ctrPassPtrToFcn} & a \hspace{0.65cm}constant pointer & to \textbf{non}constant data \\
+    \SetHline{2-4}{black}
+    & \stepcounter{ctrPassPtrToFcn}\arabic{ctrPassPtrToFcn} & a \hspace{0.65cm}constant pointer & to \hspace{0.65cm}constant data\\
+    \SetHline{2-4}{black} 
+    \end{tblr}
+	\caption{Main abbreviations}
+ 	\label{tab:t-Pointers-Ways-Pass-PtrToFcn}
+\end{table}
+
+%%%%%%%%%%%%% SUBSUBSECTION PART 1
+\subsubsection{A (\underline{non}constant) pointer to (\underline{non}constant) data}
+    \begin{minipage}{\MPWxXSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{CPPCode}
+int* fooPtr
+    \end{CPPCode}
+    \end{minipage}\\
+\begin{itemize}
+    \item the data can be modified through the dereferenced pointer, and
+    \item the pointer can be modified to point to other data.
+\end{itemize}
+
+%%%%%%%%%%%%% SUBSUBSECTION PART 2
+\subsubsection{A (\underline{non}constant) pointer to constant data}
+    \begin{minipage}{\MPWxXXXSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{CPPCode}
+const int* fooPtr   //or
+int const* fooPtr
+    \end{CPPCode}
+    \end{minipage}
+    \hspaceListingXSToListingXS
+\begin{minipage}{\MPWxSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{Terminal}
+fooPtr is a (non-constant) ptr to an int. constant
+fooPtr is a (non-constant) ptr to a constant int.
+    \end{Terminal}
+    \end{minipage}\\
+    
+\begin{itemize}
+    \item a pointer that can be modified to point to \textbf{any} data of the appropriate type, but
+    \item the data which it points \textbf{cannot} be modified through that pointer
+\end{itemize}
+\begin{minipage}{\MPWxXSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{CPPCode}
+int main
+{
+    int y{0};
+    \\ ¿$\downarrow$¿ illegal mod 
+    f(&y);      
+}
+    \end{CPPCode}
+\end{minipage}
+\hspaceListingXSToListingXS
+\begin{minipage}{\MPWxXSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{CPPCode}
+void f(const int*); //prototype
+
+void f(const int* xPtr)
+{
+    *xPtr = 100;    // error
+}
+    \end{CPPCode}
+\end{minipage}\\
+
+\noindent In the example we tried to modify a \CppCommonCode{const} object\\
+\begin{minipage}{\MPWxSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{Terminal}
+Output:
+In function "void f(const int*)":
+error: assignment of read-only location "* xPtr"
+    \end{Terminal}
+\end{minipage}\\
+
+%%%%%%%%%%%%% SUBSUBSECTION PART 3
+\subsubsection{A constant pointer to (\underline{non}constant) data}
+    \begin{minipage}{\MPWxXXXSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{CPPCode}
+int* const fooPtr
+    \end{CPPCode}
+    \end{minipage}
+    \hspaceListingXSToListingXS
+\begin{minipage}{\MPWxSMALLxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{Terminal}
+fooPtr is a const. ptr who points to an (nonconst.) integer
+    \end{Terminal}
+    \end{minipage}\\
+\begin{itemize}
+    \item always points to the same memory location, and
+    \item the data at that location can be modified through the pointer.
+\end{itemize}
+\begin{minipage}{\MPWxXSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{CPPCode}
+int main
+{
+    int x,y;
+    int* const ptr{&x};
+    
+    *ptr = 7;
+    ptr = &y    // error     
+}
+    \end{CPPCode}
+\end{minipage}
+\\
+
+\noindent In the example we tried to modify a \CppCommonCode{const} ptr\\
+\begin{minipage}{\MPWxSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{Terminal}
+Output:
+"ptr": you cannot assign to a variable that is const
+    \end{Terminal}
+\end{minipage}\\
 
 
+%%%%%%%%%%%%% SUBSUBSECTION PART 4
+\subsubsection{A constant pointer to constant data}
+\begin{minipage}{\MPWxXXXSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{CPPCode}
+const int* const fooPtr
+    \end{CPPCode}
+    \end{minipage}
+\hspaceListingXSToListingXS
+\begin{minipage}{\MPWxSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{Terminal}
+fooPtr is a constant ptr to an int. constant
+    \end{Terminal}
+    \end{minipage}\\
+    
+\begin{itemize}
+    \item such a pointer always points to the same memory location, and
+    \item the data at that location cannot be modified via the pointer.
+\end{itemize}
 
 
+\subsection{Pointers Notations and Built-in Arrays}
+\label{subsec:Pointers-02-ImportantConcepts-Ptrs-and-BuiltInArrays}
+%~\cref{subsec:Pointers-02-ImportantConcepts-Ptrs-and-BuiltInArrays}
 
+We saw the definition of built-in arrays in Section~\ref{subsec:Built-In-Arrays}. Pointers allow us to do any operation involving array subscripting. As an example assume \CppVar{v}, a built-in array of int has its first element at memory location $3000$.  e.g.\\
+\begin{minipage}{\MPWxXXSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{CPPCode}
+int v[5]{10,11,12,13,14};
+int* vPtr{v};
+    \end{CPPCode}
+    \end{minipage}
+\hspaceListingXSToListingXS
+\begin{minipage}{\MPWxSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{CPPCode}
+//also possible as
+int* vPtr{&v[0]}; // ¿$\equiv$¿ vPtr{v}
+    \end{CPPCode}
+    \end{minipage}\\
 
+\noindent In the old-classic way:\\
+\begin{minipage}{\MPWxXXSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{CPPCode}
+int v[5]{10,20,30,40,50};
+int* vPtr;
+vPtr = v;
+    \end{CPPCode}
+    \end{minipage}
+\hspaceListingXSToListingXS
+\begin{minipage}{\MPWxSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{CPPCode}
+//also possible as
+int* vPtr;
+int* vPtr = &v[0]; // ¿$\equiv$¿ (vPtr = v) ¿$\equiv$¿ vPtr{v}
+    \end{CPPCode}
+    \end{minipage}\\
+
+\noindent To refer to an element of the built-in array, e.g. 40, it is possible as:\\
+\begin{minipage}{\MPWxXXXXSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{CPPCode}
+// Option 1
+v[3]
+    \end{CPPCode}
+    \end{minipage}
+\hspaceListingXSToListingXS
+\begin{minipage}{\MPWxXXXXSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{CPPCode}
+// Option 2
+*(v+3)
+    \end{CPPCode}
+    \end{minipage}
+\hspaceListingXSToListingXS
+\begin{minipage}{\MPWxXXXXSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{CPPCode}
+// Option 3
+*(vPtr+3)
+    \end{CPPCode}
+    \end{minipage}
+\hspaceListingXSToListingXS
+\begin{minipage}{\MPWxXXXXSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{CPPCode}
+// Option 3
+vPtr[3]
+    \end{CPPCode}
+    \end{minipage}\\
+
+\noindent To refer to the \textbf{address} of an element of the built-in array, it is possible as:\\
+\begin{minipage}{\MPWxXXXSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{CPPCode}
+// Option 1
+&v[3]
+    \end{CPPCode}
+    \end{minipage}
+\hspaceListingXSToListingXS
+\begin{minipage}{\MPWxXXXSxLISTING\textwidth} % = 0.36 times \textwidth
+    \vspaceTextToListing % =\vspace{0.1cm}
+    \begin{CPPCode}
+// Option 2
+vPtr + 3
+    \end{CPPCode}
+    \end{minipage}\\
 %%%%%%%%%%%%%%%%%%%%%%%% END going through array
 % no numbers listing
 % \begin{lstlisting}[frame=tlrb,numbers=none,mathescape=true,escapechar=\%,columns=flexible]
